@@ -1,0 +1,351 @@
+Device,Test Name,Test Status,Message(s),Test description,Test category
+leaf1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf1,VerifyLLDPNeighbors,failure,Port: Ethernet1 Neighbor: leaf2 Neighbor Port: Ethernet1 - Wrong LLDP neighbors: leaf2.atd.lab/Ethernet1 - Port: Ethernet2 Neighbor: leaf2 Neighbor Port: Ethernet2 - Wrong LLDP neighbors: leaf2.atd.lab/Ethernet2 - Port: Ethernet3 Neighbor: spine1 Neighbor Port: Ethernet3 - Wrong LLDP neighbors: spine1.atd.lab/Ethernet3 - Port: Ethernet4 Neighbor: spine2 Neighbor Port: Ethernet3 - Wrong LLDP neighbors: spine2.atd.lab/Ethernet3 - Port: Ethernet5 Neighbor: spine3 Neighbor Port: Ethernet3 - Wrong LLDP neighbors: spine3.atd.lab/Ethernet3,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+leaf1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf1,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf1,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+leaf1,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+leaf1,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+leaf1,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+leaf1,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+leaf1,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf1,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf1,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+leaf1,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 12 18:27:57 leaf1 IgmpSnooping: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to IgmpSnooping (pid:1706) at tbt://10.255.252.1:5541/+n (ConnectionManager disconnect)
+ Nov 12 18:27:57 leaf1 IgmpSnooping: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbt://10.255.252.1:5541/+n-in)(IgmpSnooping (pid:1706))
+ Nov 12 18:27:57 leaf1 IgmpSnooping: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to IgmpSnooping (pid:1706) at tbt://10.255.252.1:35648/-23 (closing passive socket)
+ Nov 12 18:27:59 leaf1 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1488) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:27:59 leaf1 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1488))
+ Nov 12 18:27:59 leaf1 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:27:59 leaf1 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:1701) at tbl://sysdb/-22 (Closing the connection because agent was deconfigured.)
+ Nov 12 18:28:02 leaf1 StpTxRx: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Mlag (pid:1758) at tbl://mlagListen/+n closed by peer (EOF)
+ Nov 12 18:28:02 leaf1 StpTxRx: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://mlagListen/+n-in)(Mlag (pid:1758))
+ Nov 12 18:39:16 leaf1 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:7849) at tbl://sysdb/-45 (Closing the connection because agent was deconfigured.)
+ Nov 12 18:39:16 leaf1 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1488) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:39:16 leaf1 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1488))
+ Nov 12 18:39:16 leaf1 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+leaf1,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf1,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf1,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf1,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf1,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf1,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf1,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf1,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+leaf1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf1,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf2,VerifyLLDPNeighbors,failure,Port: Ethernet1 Neighbor: leaf1 Neighbor Port: Ethernet1 - Wrong LLDP neighbors: leaf1.atd.lab/Ethernet1 - Port: Ethernet2 Neighbor: leaf1 Neighbor Port: Ethernet2 - Wrong LLDP neighbors: leaf1.atd.lab/Ethernet2 - Port: Ethernet3 Neighbor: spine1 Neighbor Port: Ethernet4 - Wrong LLDP neighbors: spine1.atd.lab/Ethernet4 - Port: Ethernet4 Neighbor: spine2 Neighbor Port: Ethernet4 - Wrong LLDP neighbors: spine2.atd.lab/Ethernet4 - Port: Ethernet5 Neighbor: spine3 Neighbor Port: Ethernet4 - Wrong LLDP neighbors: spine3.atd.lab/Ethernet4,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+leaf2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf2,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf2,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+leaf2,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+leaf2,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+leaf2,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+leaf2,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+leaf2,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf2,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf2,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+leaf2,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 12 18:27:56 leaf2 IgmpSnooping: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to IgmpSnooping (pid:1763) at tbt://10.255.252.0:5541/+n (ConnectionManager disconnect)
+ Nov 12 18:27:56 leaf2 IgmpSnooping: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbt://10.255.252.0:5541/+n-in)(IgmpSnooping (pid:1763))
+ Nov 12 18:27:56 leaf2 IgmpSnooping: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to IgmpSnooping (pid:1763) at tbt://10.255.252.0:44612/-23 (closing passive socket)
+ Nov 12 18:28:00 leaf2 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1497) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:28:00 leaf2 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1497))
+ Nov 12 18:28:00 leaf2 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:28:00 leaf2 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:1665) at tbl://sysdb/-22 (Closing the connection because agent was deconfigured.)
+ Nov 12 18:28:02 leaf2 StpTxRx: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Mlag (pid:1701) at tbl://mlagListen/+n closed by peer (EOF)
+ Nov 12 18:28:02 leaf2 StpTxRx: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://mlagListen/+n-in)(Mlag (pid:1701))
+ Nov 12 18:30:44 leaf2 IgmpSnooping: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to  at tbt://0.0.0.0:5541/+n (ConnectionManager disconnect)
+ Nov 12 18:30:44 leaf2 IgmpSnooping: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbt://0.0.0.0:5541/+n-in)()
+ Nov 12 18:30:51 leaf2 Bgp: %BGP-3-NOTIFICATION: received from neighbor 192.168.101.12 (VRF default AS 65001) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 12 18:39:16 leaf2 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1497) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:39:16 leaf2 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1497))
+ Nov 12 18:39:16 leaf2 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:39:16 leaf2 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:7618) at tbl://sysdb/-40 (Closing the connection because agent was deconfigured.)
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+leaf2,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf2,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf2,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf2,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf2,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf2,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf2,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf2,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+leaf2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf2,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf3,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf3,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf3,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf3,VerifyLLDPNeighbors,failure,Port: Ethernet1 Neighbor: leaf4 Neighbor Port: Ethernet1 - Wrong LLDP neighbors: leaf4.atd.lab/Ethernet1 - Port: Ethernet2 Neighbor: leaf4 Neighbor Port: Ethernet2 - Wrong LLDP neighbors: leaf4.atd.lab/Ethernet2 - Port: Ethernet3 Neighbor: spine1 Neighbor Port: Ethernet5 - Wrong LLDP neighbors: spine1.atd.lab/Ethernet5 - Port: Ethernet4 Neighbor: spine2 Neighbor Port: Ethernet5 - Wrong LLDP neighbors: spine2.atd.lab/Ethernet5 - Port: Ethernet5 Neighbor: spine3 Neighbor Port: Ethernet5 - Wrong LLDP neighbors: spine3.atd.lab/Ethernet5,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+leaf3,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf3,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf3,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+leaf3,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+leaf3,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+leaf3,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+leaf3,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+leaf3,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf3,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf3,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf3,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf3,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf3,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf3,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf3,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+leaf3,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 12 17:01:45 localhost Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.20 (VRF default AS 65001) 6/5 (Cease/connection rejected) 0 bytes
+ Nov 12 17:01:46 localhost Bgp: %BGP-3-NOTIFICATION: received from neighbor 192.168.103.22 (VRF default AS 65001) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 12 17:01:47 localhost Bgp: %BGP-3-NOTIFICATION: received from neighbor 192.168.103.18 (VRF default AS 65001) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 12 18:27:57 leaf3 Mlag: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Mlag (pid:1750) at tbt://10.255.252.5:4432/+n closed by peer (EOF)
+ Nov 12 18:27:57 leaf3 Mlag: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbt://10.255.252.5:4432/+n-in)(Mlag (pid:1750))
+ Nov 12 18:27:58 leaf3 IgmpSnooping: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to IgmpSnooping (pid:1754) at tbt://10.255.252.5:5541/+n (ConnectionManager disconnect)
+ Nov 12 18:27:58 leaf3 IgmpSnooping: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbt://10.255.252.5:5541/+n-in)(IgmpSnooping (pid:1754))
+ Nov 12 18:27:58 leaf3 IgmpSnooping: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to IgmpSnooping (pid:1754) at tbt://10.255.252.5:45996/-23 (closing passive socket)
+ Nov 12 18:27:59 leaf3 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:1705) at tbl://sysdb/-21 (Closing the connection because agent was deconfigured.)
+ Nov 12 18:27:59 leaf3 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1488) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:27:59 leaf3 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1488))
+ Nov 12 18:27:59 leaf3 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:27:59 leaf3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.12 (VRF default AS 65001) 6/10 (Cease/BFD down <Hard Reset>) 0 bytes
+ Nov 12 18:27:59 leaf3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.11 (VRF default AS 65001) 6/10 (Cease/BFD down <Hard Reset>) 0 bytes
+ Nov 12 18:28:00 leaf3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.18 (VRF default AS 65001) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:28:00 leaf3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.13 (VRF default AS 65001) 6/10 (Cease/BFD down <Hard Reset>) 0 bytes
+ Nov 12 18:28:00 leaf3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.16 (VRF default AS 65001) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:28:00 leaf3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.20 (VRF default AS 65001) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:28:00 leaf3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.14 (VRF default AS 65001) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:28:00 leaf3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.22 (VRF default AS 65001) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:28:04 leaf3 StpTxRx: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Mlag (pid:1756) at tbl://mlagListen/+n closed by peer (EOF)
+ Nov 12 18:28:04 leaf3 StpTxRx: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://mlagListen/+n-in)(Mlag (pid:1756))
+ Nov 12 18:30:49 leaf3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.12 (VRF default AS 65001) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 12 18:30:50 leaf3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.11 (VRF default AS 65001) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 12 18:39:17 leaf3 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1488) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:39:17 leaf3 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1488))
+ Nov 12 18:39:17 leaf3 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:39:17 leaf3 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:7562) at tbl://sysdb/-50 (Closing the connection because agent was deconfigured.)
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+leaf3,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf3,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf3,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf3,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf3,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf3,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf3,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf3,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf3,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf3,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf3,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+leaf3,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf3,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf4,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf4,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf4,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf4,VerifyLLDPNeighbors,failure,Port: Ethernet1 Neighbor: leaf3 Neighbor Port: Ethernet1 - Wrong LLDP neighbors: leaf3.atd.lab/Ethernet1 - Port: Ethernet2 Neighbor: leaf3 Neighbor Port: Ethernet2 - Wrong LLDP neighbors: leaf3.atd.lab/Ethernet2 - Port: Ethernet3 Neighbor: spine1 Neighbor Port: Ethernet6 - Wrong LLDP neighbors: spine1.atd.lab/Ethernet6 - Port: Ethernet4 Neighbor: spine2 Neighbor Port: Ethernet6 - Wrong LLDP neighbors: spine2.atd.lab/Ethernet6 - Port: Ethernet5 Neighbor: spine3 Neighbor Port: Ethernet6 - Wrong LLDP neighbors: spine3.atd.lab/Ethernet6,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+leaf4,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf4,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf4,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+leaf4,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+leaf4,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+leaf4,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+leaf4,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+leaf4,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf4,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf4,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf4,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf4,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf4,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf4,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf4,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+leaf4,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 12 18:27:57 leaf4 IgmpSnooping: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to IgmpSnooping (pid:1760) at tbt://10.255.252.4:5541/+n (ConnectionManager disconnect)
+ Nov 12 18:27:57 leaf4 IgmpSnooping: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbt://10.255.252.4:5541/+n-in)(IgmpSnooping (pid:1760))
+ Nov 12 18:27:57 leaf4 IgmpSnooping: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to IgmpSnooping (pid:1760) at tbt://10.255.252.4:56176/-23 (closing passive socket)
+ Nov 12 18:27:59 leaf4 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 10.255.251.4 (VRF default AS 65299) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:28:00 leaf4 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.30 (VRF default AS 65001) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:28:00 leaf4 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.28 (VRF default AS 65001) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:28:01 leaf4 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:1708) at tbl://sysdb/-21 (Closing the connection because agent was deconfigured.)
+ Nov 12 18:28:01 leaf4 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1490) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:28:01 leaf4 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1490))
+ Nov 12 18:28:01 leaf4 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:28:02 leaf4 StpTxRx: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Mlag (pid:1750) at tbl://mlagListen/+n closed by peer (EOF)
+ Nov 12 18:28:02 leaf4 StpTxRx: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://mlagListen/+n-in)(Mlag (pid:1750))
+ Nov 12 18:30:59 leaf4 Bgp: %BGP-3-DROP_TXUPDATE: Dropped updates for peer 192.168.101.12 (VRF default AS 65001) because a local Nexthop was not configured for AFI/SAFI L2VPN/EVPN
+ Nov 12 18:30:59 leaf4 Bgp: %BGP-3-DROP_TXUPDATE: Dropped updates for peer 192.168.101.11 (VRF default AS 65001) because a local Nexthop was not configured for AFI/SAFI L2VPN/EVPN
+ Nov 12 18:30:59 leaf4 Bgp: %BGP-3-DROP_TXUPDATE: Dropped updates for peer 192.168.101.13 (VRF default AS 65001) because a local Nexthop was not configured for AFI/SAFI L2VPN/EVPN
+ Nov 12 18:39:18 leaf4 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1490) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:39:18 leaf4 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1490))
+ Nov 12 18:39:18 leaf4 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:39:18 leaf4 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:7769) at tbl://sysdb/-30 (Closing the connection because agent was deconfigured.)
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+leaf4,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf4,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf4,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf4,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf4,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf4,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf4,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf4,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf4,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf4,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf4,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+leaf4,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf4,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+spine1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+spine1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+spine1,VerifyLLDPNeighbors,failure,Port: Ethernet3 Neighbor: leaf1 Neighbor Port: Ethernet3 - Wrong LLDP neighbors: leaf1.atd.lab/Ethernet3 - Port: Ethernet4 Neighbor: leaf2 Neighbor Port: Ethernet3 - Wrong LLDP neighbors: leaf2.atd.lab/Ethernet3 - Port: Ethernet5 Neighbor: leaf3 Neighbor Port: Ethernet3 - Wrong LLDP neighbors: leaf3.atd.lab/Ethernet3 - Port: Ethernet6 Neighbor: leaf4 Neighbor Port: Ethernet3 - Wrong LLDP neighbors: leaf4.atd.lab/Ethernet3,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+spine1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine1,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+spine1,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+spine1,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+spine1,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+spine1,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+spine1,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+spine1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+spine1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+spine1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+spine1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+spine1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine1,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+spine1,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 12 18:27:56 spine1 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:1651) at tbl://sysdb/-24 (Closing the connection because agent was deconfigured.)
+ Nov 12 18:27:56 spine1 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1473) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:27:56 spine1 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1473))
+ Nov 12 18:27:56 spine1 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:30:49 spine1 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.13 (VRF default AS 65299) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 12 18:30:50 spine1 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.3 (VRF default AS 65299) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 12 18:39:16 spine1 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.25 (VRF default AS 65124) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:39:16 spine1 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1473) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:39:16 spine1 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1473))
+ Nov 12 18:39:16 spine1 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:39:16 spine1 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:7242) at tbl://sysdb/-24 (Closing the connection because agent was deconfigured.)
+ Nov 12 18:39:16 spine1 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.26 (VRF default AS 65124) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+spine1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+spine1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+spine1,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+spine1,VerifyCoredump,success,,Verifies there are no core dump files.,System
+spine1,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+spine1,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+spine1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+spine1,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+spine1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+spine2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+spine2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+spine2,VerifyLLDPNeighbors,failure,Port: Ethernet3 Neighbor: leaf1 Neighbor Port: Ethernet4 - Wrong LLDP neighbors: leaf1.atd.lab/Ethernet4 - Port: Ethernet4 Neighbor: leaf2 Neighbor Port: Ethernet4 - Wrong LLDP neighbors: leaf2.atd.lab/Ethernet4 - Port: Ethernet5 Neighbor: leaf3 Neighbor Port: Ethernet4 - Wrong LLDP neighbors: leaf3.atd.lab/Ethernet4 - Port: Ethernet6 Neighbor: leaf4 Neighbor Port: Ethernet4 - Wrong LLDP neighbors: leaf4.atd.lab/Ethernet4,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+spine2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine2,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+spine2,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+spine2,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+spine2,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+spine2,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+spine2,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+spine2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+spine2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+spine2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+spine2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+spine2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine2,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+spine2,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 12 17:01:46 localhost Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.19 (VRF default AS 65299) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 12 18:27:56 spine2 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:1686) at tbl://sysdb/-28 (Closing the connection because agent was deconfigured.)
+ Nov 12 18:27:57 spine2 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.26 (VRF default AS 65124) 6/2 (Cease/administrative shutdown <Hard Reset>) reason: 
+ Nov 12 18:27:57 spine2 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.195 (VRF default AS 65124) 6/2 (Cease/administrative shutdown <Hard Reset>) reason: 
+ Nov 12 18:27:57 spine2 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.4 (VRF default AS 65299) 6/2 (Cease/administrative shutdown <Hard Reset>) reason: 
+ Nov 12 18:30:50 spine2 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.26 (VRF default AS 65124) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 12 18:30:51 spine2 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.2 (VRF default AS 65100) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 12 18:39:16 spine2 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1475) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:39:16 spine2 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1475))
+ Nov 12 18:39:16 spine2 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:39:16 spine2 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:7331) at tbl://sysdb/-28 (Closing the connection because agent was deconfigured.)
+ Nov 12 18:39:16 spine2 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.25 (VRF default AS 65124) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:39:16 spine2 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.26 (VRF default AS 65124) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:39:16 spine2 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.147 (VRF default AS 65124) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:39:17 spine2 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.153 (VRF default AS 65124) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+spine2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+spine2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+spine2,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+spine2,VerifyCoredump,success,,Verifies there are no core dump files.,System
+spine2,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+spine2,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+spine2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+spine2,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+spine2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+spine3,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine3,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+spine3,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+spine3,VerifyLLDPNeighbors,failure,Port: Ethernet3 Neighbor: leaf1 Neighbor Port: Ethernet5 - Wrong LLDP neighbors: leaf1.atd.lab/Ethernet5 - Port: Ethernet4 Neighbor: leaf2 Neighbor Port: Ethernet5 - Wrong LLDP neighbors: leaf2.atd.lab/Ethernet5 - Port: Ethernet5 Neighbor: leaf3 Neighbor Port: Ethernet5 - Wrong LLDP neighbors: leaf3.atd.lab/Ethernet5 - Port: Ethernet6 Neighbor: leaf4 Neighbor Port: Ethernet5 - Wrong LLDP neighbors: leaf4.atd.lab/Ethernet5,Verifies the connection status of the specified LLDP (Link Layer Discovery Protocol) neighbors.,Connectivity
+spine3,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine3,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+spine3,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+spine3,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+spine3,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+spine3,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+spine3,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+spine3,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+spine3,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+spine3,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+spine3,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+spine3,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine3,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+spine3,VerifyLoggingErrors,failure,"Device has reported syslog messages with a severity of ERRORS or higher:
+Nov 12 17:01:45 spine3 Bgp: %BGP-3-NOTIFICATION: received from neighbor 192.168.103.21 (VRF default AS 65299) 6/5 (Cease/connection rejected) 0 bytes
+ Nov 12 18:27:56 spine3 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1474) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:27:56 spine3 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1474))
+ Nov 12 18:27:56 spine3 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:27:56 spine3 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:1691) at tbl://sysdb/-26 (Closing the connection because agent was deconfigured.)
+ Nov 12 18:27:57 spine3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.25 (VRF default AS 65124) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:27:57 spine3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.205 (VRF default AS 65124) 6/2 (Cease/administrative shutdown <Hard Reset>) reason: 
+ Nov 12 18:27:57 spine3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.13 (VRF default AS 65100) 6/2 (Cease/administrative shutdown <Hard Reset>) reason: 
+ Nov 12 18:27:57 spine3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.29 (VRF default AS 65299) 6/2 (Cease/administrative shutdown <Hard Reset>) reason: 
+ Nov 12 18:27:57 spine3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.1 (VRF default AS 65100) 6/2 (Cease/administrative shutdown <Hard Reset>) reason: 
+ Nov 12 18:27:57 spine3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.3 (VRF default AS 65299) 6/2 (Cease/administrative shutdown <Hard Reset>) reason: 
+ Nov 12 18:27:58 spine3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.21 (VRF default AS 65299) 6/2 (Cease/administrative shutdown <Hard Reset>) reason: 
+ Nov 12 18:30:51 spine3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.26 (VRF default AS 65124) 6/7 (Cease/connection collision resolution) 0 bytes 
+ Nov 12 18:39:16 spine3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.103.149 (VRF default AS 65124) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:39:17 spine3 Sysdb: %FWK-3-SOCKET_CLOSE_LOCAL: Closing connection to AleOpenConfig (pid:7250) at tbl://sysdb/-21 (Closing the connection because agent was deconfigured.)
+ Nov 12 18:39:17 spine3 AleOpenConfig: %FWK-3-SOCKET_CLOSE_REMOTE: Connection to Sysdb (pid:1474) at tbl://sysdb/+n closed by peer (EOF)
+ Nov 12 18:39:17 spine3 AleOpenConfig: %FWK-3-MOUNT_PEER_CLOSED: Peer closed socket connection. (tbl://sysdb/+n-in)(Sysdb (pid:1474))
+ Nov 12 18:39:17 spine3 AleOpenConfig: %FWK-3-MOUNT_CLOSED_EXIT: Process exiting.
+ Nov 12 18:39:17 spine3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.25 (VRF default AS 65124) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ Nov 12 18:39:17 spine3 Bgp: %BGP-3-NOTIFICATION: sent to neighbor 192.168.101.26 (VRF default AS 65124) 6/3 (Cease/peer de-configured <Hard Reset>) 0 bytes
+ 
+",Verifies there are no syslog messages with a severity of ERRORS or higher.,Logging
+spine3,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+spine3,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+spine3,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+spine3,VerifyCoredump,success,,Verifies there are no core dump files.,System
+spine3,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+spine3,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+spine3,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+spine3,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+spine3,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System

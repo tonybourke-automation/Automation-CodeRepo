@@ -1,0 +1,137 @@
+aaa_root:
+  disabled: true
+config_end: true
+enable_password:
+  disabled: true
+ethernet_interfaces:
+- name: Ethernet1
+  description: MLAG_leaf3_Ethernet1
+  shutdown: false
+  channel_group:
+    id: 1
+    mode: active
+  peer: leaf3
+  peer_interface: Ethernet1
+  peer_type: mlag_peer
+- name: Ethernet2
+  description: MLAG_leaf3_Ethernet2
+  shutdown: false
+  channel_group:
+    id: 1
+    mode: active
+  peer: leaf3
+  peer_interface: Ethernet2
+  peer_type: mlag_peer
+- name: Ethernet3
+  description: L2_spine1_Ethernet6
+  shutdown: false
+  channel_group:
+    id: 3
+    mode: active
+  peer: spine1
+  peer_interface: Ethernet6
+  peer_type: l3spine
+- name: Ethernet4
+  description: L2_spine2_Ethernet6
+  shutdown: false
+  channel_group:
+    id: 3
+    mode: active
+  peer: spine2
+  peer_interface: Ethernet6
+  peer_type: l3spine
+- name: Ethernet7
+  description: SERVER_host3_Ethernet2
+  shutdown: false
+  channel_group:
+    id: 7
+    mode: active
+  peer: host3
+  peer_interface: Ethernet2
+  peer_type: server
+  port_profile: PP-VLAN10
+hostname: leaf4
+ip_igmp_snooping:
+  globally_enabled: true
+management_api_http:
+  enable_https: true
+  enable_vrfs:
+  - name: MGMT
+management_interfaces:
+- name: Management1
+  description: OOB_MANAGEMENT
+  shutdown: false
+  vrf: MGMT
+  ip_address: 192.168.0.24/24
+  type: oob
+metadata:
+  is_deployed: true
+  platform: vEOS-lab
+  fabric_name: FABRIC
+mlag_configuration:
+  domain_id: mlag2
+  local_interface: Vlan4094
+  peer_address: 10.1.253.0
+  peer_link: Port-Channel1
+  reload_delay_mlag: '300'
+  reload_delay_non_mlag: '330'
+port_channel_interfaces:
+- name: Port-Channel1
+  description: MLAG_leaf3_Port-Channel1
+  shutdown: false
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      groups:
+      - MLAG
+- name: Port-Channel3
+  description: L2_SPINES_Port-Channel5
+  shutdown: false
+  mlag: 3
+  switchport:
+    enabled: true
+    mode: trunk
+    trunk:
+      allowed_vlan: '10'
+- name: Port-Channel7
+  description: PortChannel host3
+  shutdown: false
+  mlag: 7
+  spanning_tree_portfast: edge
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: 10
+service_routing_protocols_model: multi-agent
+spanning_tree:
+  mode: mstp
+  mst_instances:
+  - id: '0'
+    priority: 16384
+  no_spanning_tree_vlan: '4094'
+transceiver_qsfp_default_mode_4x10: true
+vlan_interfaces:
+- name: Vlan4094
+  description: MLAG
+  shutdown: false
+  ip_address: 10.1.253.1/31
+  mtu: 1500
+  no_autostate: true
+vlan_internal_order:
+  allocation: ascending
+  range:
+    beginning: 1006
+    ending: 1199
+vlans:
+- id: 4094
+  name: MLAG
+  trunk_groups:
+  - MLAG
+  tenant: system
+- id: 10
+  name: DMZ
+  tenant: TENANT_A
+vrfs:
+- name: MGMT
+  ip_routing: false

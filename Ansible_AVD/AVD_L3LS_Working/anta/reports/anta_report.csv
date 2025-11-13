@@ -1,0 +1,287 @@
+Device,Test Name,Test Status,Message(s),Test description,Test category
+borderleaf1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+borderleaf1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+borderleaf1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+borderleaf1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+borderleaf1,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+borderleaf1,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+borderleaf1,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+borderleaf1,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+borderleaf1,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+borderleaf1,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+borderleaf1,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+borderleaf1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+borderleaf1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+borderleaf1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+borderleaf1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+borderleaf1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+borderleaf1,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+borderleaf1,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+borderleaf1,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+borderleaf1,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+borderleaf1,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+borderleaf1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+borderleaf1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+borderleaf1,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+borderleaf1,VerifyCoredump,success,,Verifies there are no core dump files.,System
+borderleaf1,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+borderleaf1,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+borderleaf1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+borderleaf1,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+borderleaf1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+borderleaf1,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+borderleaf2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+borderleaf2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+borderleaf2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+borderleaf2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+borderleaf2,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+borderleaf2,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+borderleaf2,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+borderleaf2,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+borderleaf2,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+borderleaf2,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+borderleaf2,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+borderleaf2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+borderleaf2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+borderleaf2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+borderleaf2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+borderleaf2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+borderleaf2,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+borderleaf2,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+borderleaf2,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+borderleaf2,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+borderleaf2,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+borderleaf2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+borderleaf2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+borderleaf2,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+borderleaf2,VerifyCoredump,success,,Verifies there are no core dump files.,System
+borderleaf2,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+borderleaf2,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+borderleaf2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+borderleaf2,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+borderleaf2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+borderleaf2,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf1,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf1,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+leaf1,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+leaf1,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+leaf1,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+leaf1,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+leaf1,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf1,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf1,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+leaf1,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf1,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf1,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf1,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf1,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf1,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf1,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf1,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+leaf1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf1,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf2,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf2,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+leaf2,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+leaf2,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+leaf2,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+leaf2,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+leaf2,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf2,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf2,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+leaf2,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf2,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf2,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf2,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf2,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf2,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf2,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf2,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+leaf2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf2,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf3,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf3,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf3,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf3,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf3,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf3,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+leaf3,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+leaf3,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+leaf3,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+leaf3,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+leaf3,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf3,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf3,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf3,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf3,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf3,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf3,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf3,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+leaf3,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf3,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf3,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf3,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf3,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf3,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf3,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf3,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf3,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf3,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf3,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+leaf3,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf3,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf4,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf4,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+leaf4,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+leaf4,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf4,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf4,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+leaf4,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+leaf4,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+leaf4,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+leaf4,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+leaf4,VerifyIllegalLACP,success,,Verifies there are no illegal LACP packets in port channels.,Interfaces
+leaf4,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+leaf4,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+leaf4,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+leaf4,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+leaf4,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf4,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
+leaf4,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+leaf4,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf4,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf4,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf4,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+leaf4,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+leaf4,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+leaf4,VerifyCoredump,success,,Verifies there are no core dump files.,System
+leaf4,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+leaf4,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+leaf4,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+leaf4,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+leaf4,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+leaf4,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+spine1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+spine1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+spine1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine1,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+spine1,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+spine1,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+spine1,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+spine1,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+spine1,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+spine1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+spine1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+spine1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+spine1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+spine1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine1,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+spine1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+spine1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+spine1,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+spine1,VerifyCoredump,success,,Verifies there are no core dump files.,System
+spine1,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+spine1,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+spine1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+spine1,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+spine1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+spine2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+spine2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+spine2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine2,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+spine2,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+spine2,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+spine2,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+spine2,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+spine2,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+spine2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+spine2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+spine2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+spine2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+spine2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine2,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+spine2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+spine2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+spine2,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+spine2,VerifyCoredump,success,,Verifies there are no core dump files.,System
+spine2,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+spine2,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+spine2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+spine2,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+spine2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+spine3,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine3,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+spine3,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+spine3,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine3,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+spine3,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+spine3,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+spine3,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+spine3,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+spine3,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+spine3,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+spine3,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+spine3,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+spine3,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+spine3,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine3,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+spine3,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+spine3,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+spine3,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+spine3,VerifyCoredump,success,,Verifies there are no core dump files.,System
+spine3,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+spine3,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+spine3,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+spine3,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+spine3,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
+spine4,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine4,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
+spine4,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
+spine4,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine4,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+spine4,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
+spine4,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
+spine4,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
+spine4,VerifyTemperature,skipped,VerifyTemperature test is not supported on vEOS-lab,Verifies if the device temperature is within acceptable limits.,Hardware
+spine4,VerifyTransceiversTemperature,skipped,VerifyTransceiversTemperature test is not supported on vEOS-lab,Verifies if all the transceivers are operating at an acceptable temperature.,Hardware
+spine4,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet discard counters are equal to zero.,Interfaces
+spine4,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
+spine4,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
+spine4,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
+spine4,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine4,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
+spine4,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
+spine4,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
+spine4,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
+spine4,VerifyCoredump,success,,Verifies there are no core dump files.,System
+spine4,VerifyFileSystemUtilization,success,,Verifies that no partition is utilizing more than 75% of its disk space.,System
+spine4,VerifyMaintenance,success,,Verifies that the device is not currently under or entering maintenance.,System
+spine4,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
+spine4,VerifyNTP,success,,Verifies if NTP is synchronised.,System
+spine4,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
