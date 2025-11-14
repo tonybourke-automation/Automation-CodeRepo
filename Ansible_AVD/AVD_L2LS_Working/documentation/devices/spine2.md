@@ -169,6 +169,7 @@ vlan internal order ascending range 1006 1199
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
 | 10 | DMZ | - |
+| 20 | Internal | - |
 | 3009 | MLAG_L3_VRF_VRF_A | MLAG |
 | 4094 | MLAG | MLAG |
 
@@ -178,6 +179,9 @@ vlan internal order ascending range 1006 1199
 !
 vlan 10
    name DMZ
+!
+vlan 20
+   name Internal
 !
 vlan 3009
    name MLAG_L3_VRF_VRF_A
@@ -200,10 +204,10 @@ vlan 4094
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
 | Ethernet1 | MLAG_spine1_Ethernet1 | *trunk | *- | *- | *MLAG | 1 |
 | Ethernet2 | MLAG_spine1_Ethernet2 | *trunk | *- | *- | *MLAG | 1 |
-| Ethernet3 | L2_leaf1_Ethernet4 | *trunk | *10 | *- | *- | 3 |
-| Ethernet4 | L2_leaf2_Ethernet4 | *trunk | *10 | *- | *- | 3 |
-| Ethernet5 | L2_leaf3_Ethernet4 | *trunk | *10 | *- | *- | 5 |
-| Ethernet6 | L2_leaf4_Ethernet4 | *trunk | *10 | *- | *- | 5 |
+| Ethernet3 | L2_leaf1_Ethernet4 | *trunk | *10,20 | *- | *- | 3 |
+| Ethernet4 | L2_leaf2_Ethernet4 | *trunk | *10,20 | *- | *- | 3 |
+| Ethernet5 | L2_leaf3_Ethernet4 | *trunk | *10,20 | *- | *- | 5 |
+| Ethernet6 | L2_leaf4_Ethernet4 | *trunk | *10,20 | *- | *- | 5 |
 
 *Inherited from Port-Channel Interface
 
@@ -251,8 +255,8 @@ interface Ethernet6
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
 | Port-Channel1 | MLAG_spine1_Port-Channel1 | trunk | - | - | MLAG | - | - | - | - |
-| Port-Channel3 | L2_mlag1_Port-Channel3 | trunk | 10 | - | - | - | - | 3 | - |
-| Port-Channel5 | L2_mlag2_Port-Channel3 | trunk | 10 | - | - | - | - | 5 | - |
+| Port-Channel3 | L2_mlag1_Port-Channel3 | trunk | 10,20 | - | - | - | - | 3 | - |
+| Port-Channel5 | L2_mlag2_Port-Channel3 | trunk | 10,20 | - | - | - | - | 5 | - |
 
 #### Port-Channel Interfaces Device Configuration
 
@@ -268,7 +272,7 @@ interface Port-Channel1
 interface Port-Channel3
    description L2_mlag1_Port-Channel3
    no shutdown
-   switchport trunk allowed vlan 10
+   switchport trunk allowed vlan 10,20
    switchport mode trunk
    switchport
    mlag 3
@@ -276,7 +280,7 @@ interface Port-Channel3
 interface Port-Channel5
    description L2_mlag2_Port-Channel3
    no shutdown
-   switchport trunk allowed vlan 10
+   switchport trunk allowed vlan 10,20
    switchport mode trunk
    switchport
    mlag 5
@@ -315,6 +319,7 @@ interface Loopback0
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
 | Vlan10 | DMZ | VRF_A | - | False |
+| Vlan20 | Internal | VRF_A | - | False |
 | Vlan3009 | MLAG_L3_VRF_VRF_A | VRF_A | 1500 | False |
 | Vlan4094 | MLAG | default | 1500 | False |
 
@@ -323,6 +328,7 @@ interface Loopback0
 | Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
 | Vlan10 |  VRF_A  |  10.1.10.3/24  |  -  |  10.1.10.1  |  -  |  -  |
+| Vlan20 |  VRF_A  |  10.1.20.3/24  |  -  |  10.1.20.1  |  -  |  -  |
 | Vlan3009 |  VRF_A  |  10.1.253.3/31  |  -  |  -  |  -  |  -  |
 | Vlan4094 |  default  |  10.1.253.1/31  |  -  |  -  |  -  |  -  |
 
@@ -336,6 +342,13 @@ interface Vlan10
    vrf VRF_A
    ip address 10.1.10.3/24
    ip virtual-router address 10.1.10.1
+!
+interface Vlan20
+   description Internal
+   no shutdown
+   vrf VRF_A
+   ip address 10.1.20.3/24
+   ip virtual-router address 10.1.20.1
 !
 interface Vlan3009
    description MLAG_L3_VRF_VRF_A

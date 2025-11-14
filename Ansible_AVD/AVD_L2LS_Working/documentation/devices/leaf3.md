@@ -164,6 +164,7 @@ vlan internal order ascending range 1006 1199
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
 | 10 | DMZ | - |
+| 20 | Internal | - |
 | 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
@@ -172,6 +173,9 @@ vlan internal order ascending range 1006 1199
 !
 vlan 10
    name DMZ
+!
+vlan 20
+   name Internal
 !
 vlan 4094
    name MLAG
@@ -190,9 +194,10 @@ vlan 4094
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
 | Ethernet1 | MLAG_leaf4_Ethernet1 | *trunk | *- | *- | *MLAG | 1 |
 | Ethernet2 | MLAG_leaf4_Ethernet2 | *trunk | *- | *- | *MLAG | 1 |
-| Ethernet3 | L2_spine1_Ethernet5 | *trunk | *10 | *- | *- | 3 |
-| Ethernet4 | L2_spine2_Ethernet5 | *trunk | *10 | *- | *- | 3 |
+| Ethernet3 | L2_spine1_Ethernet5 | *trunk | *10,20 | *- | *- | 3 |
+| Ethernet4 | L2_spine2_Ethernet5 | *trunk | *10,20 | *- | *- | 3 |
 | Ethernet7 | SERVER_host3_Ethernet1 | *access | *10 | *- | *- | 7 |
+| Ethernet9 | SERVER_host4_Ethernet1 | *access | *20 | *- | *- | 9 |
 
 *Inherited from Port-Channel Interface
 
@@ -224,6 +229,11 @@ interface Ethernet7
    description SERVER_host3_Ethernet1
    no shutdown
    channel-group 7 mode active
+!
+interface Ethernet9
+   description SERVER_host4_Ethernet1
+   no shutdown
+   channel-group 9 mode active
 ```
 
 ### Port-Channel Interfaces
@@ -235,8 +245,9 @@ interface Ethernet7
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
 | Port-Channel1 | MLAG_leaf4_Port-Channel1 | trunk | - | - | MLAG | - | - | - | - |
-| Port-Channel3 | L2_SPINES_Port-Channel5 | trunk | 10 | - | - | - | - | 3 | - |
+| Port-Channel3 | L2_SPINES_Port-Channel5 | trunk | 10,20 | - | - | - | - | 3 | - |
 | Port-Channel7 | PortChannel host3 | access | 10 | - | - | - | - | 7 | - |
+| Port-Channel9 | PortChannel host4 | access | 20 | - | - | - | - | 9 | - |
 
 #### Port-Channel Interfaces Device Configuration
 
@@ -252,7 +263,7 @@ interface Port-Channel1
 interface Port-Channel3
    description L2_SPINES_Port-Channel5
    no shutdown
-   switchport trunk allowed vlan 10
+   switchport trunk allowed vlan 10,20
    switchport mode trunk
    switchport
    mlag 3
@@ -264,6 +275,15 @@ interface Port-Channel7
    switchport mode access
    switchport
    mlag 7
+   spanning-tree portfast
+!
+interface Port-Channel9
+   description PortChannel host4
+   no shutdown
+   switchport access vlan 20
+   switchport mode access
+   switchport
+   mlag 9
    spanning-tree portfast
 ```
 

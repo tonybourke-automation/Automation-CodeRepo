@@ -108,7 +108,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: '10'
+      allowed_vlan: 10,20
 - name: Port-Channel5
   description: L2_mlag2_Port-Channel3
   shutdown: false
@@ -117,7 +117,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: '10'
+      allowed_vlan: 10,20
 prefix_lists:
 - name: PL-MLAG-PEER-VRFS
   sequence_numbers:
@@ -155,6 +155,14 @@ vlan_interfaces:
   ip_virtual_router_addresses:
   - 10.1.10.1
   tenant: TENANT_A
+- name: Vlan20
+  description: Internal
+  shutdown: false
+  vrf: VRF_A
+  ip_address: 10.1.20.3/24
+  ip_virtual_router_addresses:
+  - 10.1.20.1
+  tenant: TENANT_A
 - name: Vlan3009
   description: MLAG_L3_VRF_VRF_A
   shutdown: false
@@ -176,6 +184,9 @@ vlans:
   tenant: system
 - id: 10
   name: DMZ
+  tenant: TENANT_A
+- id: 20
+  name: Internal
   tenant: TENANT_A
 - id: 3009
   name: MLAG_L3_VRF_VRF_A

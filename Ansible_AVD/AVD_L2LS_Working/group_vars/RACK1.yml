@@ -8,3 +8,13 @@ servers:
         port_channel:
           description: PortChannel host1
           mode: active
+  - name: host2
+    adapters:
+      - endpoint_ports: [ Ethernet1, Ethernet2 ]
+        switch_ports: [ Ethernet9, Ethernet9 ]
+        switches: [ leaf1, leaf2 ]
+        profile: PP-VLAN20
+        port_channel:
+          description: Connection to host2
+          mode: active
+

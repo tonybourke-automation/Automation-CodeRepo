@@ -50,6 +50,16 @@ ethernet_interfaces:
   peer_interface: Ethernet2
   peer_type: server
   port_profile: PP-VLAN10
+- name: Ethernet9
+  description: SERVER_host2_Ethernet2
+  shutdown: false
+  channel_group:
+    id: 9
+    mode: active
+  peer: host2
+  peer_interface: Ethernet2
+  peer_type: server
+  port_profile: PP-VLAN20
 hostname: leaf2
 ip_igmp_snooping:
   globally_enabled: true
@@ -93,7 +103,7 @@ port_channel_interfaces:
     enabled: true
     mode: trunk
     trunk:
-      allowed_vlan: '10'
+      allowed_vlan: 10,20
 - name: Port-Channel7
   description: PortChannel host1
   shutdown: false
@@ -103,6 +113,15 @@ port_channel_interfaces:
     enabled: true
     mode: access
     access_vlan: 10
+- name: Port-Channel9
+  description: Connection to host2
+  shutdown: false
+  mlag: 9
+  spanning_tree_portfast: edge
+  switchport:
+    enabled: true
+    mode: access
+    access_vlan: 20
 service_routing_protocols_model: multi-agent
 spanning_tree:
   mode: mstp
@@ -131,6 +150,9 @@ vlans:
   tenant: system
 - id: 10
   name: DMZ
+  tenant: TENANT_A
+- id: 20
+  name: Internal
   tenant: TENANT_A
 vrfs:
 - name: MGMT
