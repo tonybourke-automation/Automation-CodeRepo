@@ -1,0 +1,115 @@
+---
+global_settings:
+  mtu: 1500
+
+devices:
+  leaf1:
+    loopbacks:
+      loopback0:
+        ip: 192.168.101.1/32
+      loopback1:
+        ip: 192.168.102.1/32
+    p2p:
+      - Ethernet3
+      - Ethernet4
+      - Ethernet5
+      - Ethernet6
+  leaf2:
+    loopbacks:
+      loopback0:
+        ip: 192.168.101.2/32
+      loopback1:
+        ip: 192.168.102.2/32
+    p2p:
+      - Ethernet3
+      - Ethernet4
+      - Ethernet5
+      - Ethernet6
+  leaf3:
+    loopbacks:
+      loopback0:
+        ip: 192.168.101.3/32
+      loopback1:
+        ip: 192.168.102.3/32
+    p2p:
+      - Ethernet3
+      - Ethernet4
+      - Ethernet5
+      - Ethernet6
+  leaf4:
+    loopbacks:
+      loopback0:
+        ip: 192.168.101.4/32
+      loopback1:
+        ip: 192.168.102.4/32
+    p2p:
+      - Ethernet3
+      - Ethernet4
+      - Ethernet5
+      - Ethernet6
+  borderleaf1:
+    loopbacks:
+      loopback0:
+        ip: 192.168.101.5/32
+      loopback1:
+        ip: 192.168.102.5/32
+    p2p:
+      - Ethernet3
+      - Ethernet4
+      - Ethernet5
+      - Ethernet6
+  borderleaf2:
+    loopbacks:
+      loopback0:
+        ip: 192.168.101.6/32
+      loopback1:
+        ip: 192.168.102.6/32
+    p2p:
+      - Ethernet3
+      - Ethernet4
+      - Ethernet5
+      - Ethernet6
+  spine1:
+    loopbacks:
+      loopback0:
+        ip: 192.168.101.101/32
+    p2p:
+      - Ethernet3
+      - Ethernet4
+      - Ethernet5
+      - Ethernet6
+      - Ethernet7
+      - Ethernet8
+  spine2:
+    loopbacks:
+      loopback0:
+        ip: 192.168.101.102/32
+    p2p:
+      - Ethernet3
+      - Ethernet4
+      - Ethernet5
+      - Ethernet6
+      - Ethernet7
+      - Ethernet8
+  spine3:
+    loopbacks:
+      loopback0:
+        ip: 192.168.101.103/32
+    p2p:
+      - Ethernet3
+      - Ethernet4
+      - Ethernet5
+      - Ethernet6
+      - Ethernet7
+      - Ethernet8
+  spine4:
+    loopbacks:
+      loopback0:
+        ip: 192.168.101.104/32
+    p2p:
+      - Ethernet3
+      - Ethernet4
+      - Ethernet5
+      - Ethernet6
+      - Ethernet7
+      - Ethernet8

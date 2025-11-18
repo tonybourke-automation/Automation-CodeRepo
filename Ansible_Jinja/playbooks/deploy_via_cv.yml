@@ -1,0 +1,14 @@
+---
+- name: Deploy fabric to CVP
+  hosts: FABRIC
+  tasks:
+    - name: Provision CVP with AVD configuration
+      ansible.builtin.import_role:
+        name: arista.avd.cv_deploy
+      vars:
+        cv_server: cvp
+        cv_token: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjc1NTYxOTMwNjk3Mzc5Njc4NTIsImRzbiI6IkFQSSIsImRzdCI6ImFjY291bnQiLCJleHAiOjE3OTQwMzgzOTksImlhdCI6MTc2MzI2MjgyNSwib2dpIjozLCJvZ24iOiJEZWZhdWx0Iiwic2lkIjoiMzQ2YzI3OTBhMWJlZDU0ZWM2YmY4NmRkYjU1MWM3YzllNDQ5ZDcyNTZjYWNjYmFjOGUxYjY5ZjE4ZmJjNzg2ZS1fcGpQVUpBbUxRQnZQZWhHT0hDeGFqY1RXbGMzeTBhRTV3Q1J5eDFBIn0.T0Cwug3JDCK6AniClZmCPrV3IllTqLYzPXsrZQqBq4_j7hLEefWQ7EWgYuk4JtloWWn2nHB2hYedPRNx0eq8-jHiLQp70WneCEm4ndAgNNePocrqxIjitMqXhaU-r9MciPj24ewr6jrnhzE4vrWn02yEvS-4KTUf7_gENPSgdctwdtkS7FesT6vwtbCvSgwRUNi7qc_hB5D59LYLNuijwLuybfA8EfiktikTHOIcf0NNQ-yyT8zXOPP8tDL813eB8JvuXUpNO261f_z51DrANSKG26Drn2GKHsVQDHghEWMY5sDPESJAQltSaNQi8SRcGqfySJ9KVr62VHhkotzAjcIpBWsSD8uZ1SDMsW7N_-DJwz9Wf0KgvMbXMdk2HIIDWp13Drnib5svkxnOAjF3cLD-EzELjA65YLm1dcadRSHijP0Qgu3--PLF3doVAN0WboGDXI9PpB9f6PT6gVceukBOmIb7Xg8OQEXq6sAK7I1zCqOaQUwZPslF7k1cDjbKW6z9tSM7EFdU0e0s8Lr0GCIZS6NBsUkeCJ4W_jUuWOAinXYkWQePzzBrz1g1GZLSfkcqlSCSlTI1nDEh8zHcZkPoGaHR7ttqVOj_H6ebdUdIjGsMTwn7ew3sLjLeQaL3uhtGsK4RXhxi_u9nnZDl9qu22bZvr63vR0VN_97BcHs"
+        cv_verify_certs: true
+        cv_configlet_name_template: "Jinja-${hostname}"
+        cv_run_change_control: true
+        eos_config_dir: 'configs'

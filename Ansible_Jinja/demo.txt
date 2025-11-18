@@ -1,0 +1,9 @@
+1) What are we going to do? (EVPN/VXLAN underlay based on OSPF)
+   a) What does that look like from a CLI perspective
+2) Setup Jinja 
+3) Create data model/template
+4) Setup build process
+5) Build configs
+6) Setup upload process
+7) Upload configs (as static configlets)
+8) Upload configs to devices (through eAPI, bypassing CloudVision)

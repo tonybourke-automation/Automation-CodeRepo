@@ -1,0 +1,22 @@
+ip routing
+
+{% set router_id = devices[inventory_hostname]["loopbacks"]["loopback0"]["ip"].split("/") %}
+router ospf 10
+   router-id {{ router_id[0] }}
+
+{# L3 Eth interfaces #}
+{% for p2p in devices[inventory_hostname]["p2p"] %}
+interface {{ p2p }}
+   no switchport
+   ip address unnumbered loopback 0
+   ip ospf area 0
+   ip ospf network point-to-point
+   mtu {{ global_settings["mtu"] }}
+
+{% endfor %}
+{% for loopback in devices[inventory_hostname]["loopbacks"] %}
+interface {{ loopback }}
+   ip address {{ devices[inventory_hostname]["loopbacks"][loopback]["ip"] }}
+   ip ospf area 0
+   
+{% endfor %}

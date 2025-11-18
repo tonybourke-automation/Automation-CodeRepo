@@ -1,0 +1,10 @@
+---
+- name: Generate simple
+  hosts: FABRIC
+  connection: local
+  tasks:
+    - name: Build config from template
+      ansible.builtin.template:
+        src: "/home/coder/project/labfiles/Automation-CodeRepo/Ansible_Jinja/templates/underlay.j2"
+        dest: "/home/coder/project/labfiles/Automation-CodeRepo/Ansible_Jinja/configs/{{ inventory_hostname }}.cfg"
+        mode: "0644"
