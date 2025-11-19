@@ -52,30 +52,6 @@ ethernet_interfaces:
     enable: true
   switchport:
     enabled: false
-- name: Ethernet7
-  description: P2P_borderleaf1_Ethernet3
-  shutdown: false
-  mtu: 1500
-  ip_address: 192.168.103.192/31
-  peer: borderleaf1
-  peer_interface: Ethernet3
-  peer_type: l3leaf
-  sflow:
-    enable: true
-  switchport:
-    enabled: false
-- name: Ethernet8
-  description: P2P_borderleaf2_Ethernet3
-  shutdown: false
-  mtu: 1500
-  ip_address: 192.168.103.200/31
-  peer: borderleaf2
-  peer_interface: Ethernet3
-  peer_type: l3leaf
-  sflow:
-    enable: true
-  switchport:
-    enabled: false
 hostname: spine1
 ip_routing: true
 loopback_interfaces:
@@ -176,26 +152,6 @@ router_bgp:
     remote_as: '65299'
     peer: leaf4
     description: leaf4_Ethernet3
-  - ip_address: 192.168.103.193
-    peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65124'
-    peer: borderleaf1
-    description: borderleaf1_Ethernet3
-  - ip_address: 192.168.103.201
-    peer_group: IPv4-UNDERLAY-PEERS
-    remote_as: '65124'
-    peer: borderleaf2
-    description: borderleaf2_Ethernet3
-  - ip_address: 192.168.101.25
-    peer_group: EVPN-OVERLAY-PEERS
-    remote_as: '65124'
-    peer: borderleaf1
-    description: borderleaf1_Loopback0
-  - ip_address: 192.168.101.26
-    peer_group: EVPN-OVERLAY-PEERS
-    remote_as: '65124'
-    peer: borderleaf2
-    description: borderleaf2_Loopback0
   - ip_address: 192.168.101.1
     peer_group: EVPN-OVERLAY-PEERS
     remote_as: '65100'

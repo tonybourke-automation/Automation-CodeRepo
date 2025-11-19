@@ -41,9 +41,9 @@ all:
             RACK2:
               hosts:  
                 leaf[3:4]:
-            BLRACK1:
-              hosts:
-                borderleaf[1:2]:
+            # BLRACK1:
+            #   hosts:
+            #     borderleaf[1:2]:
     EVPN_SERVICES:
       children:
         LEAFS:

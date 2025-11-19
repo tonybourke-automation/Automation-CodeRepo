@@ -1,0 +1,33 @@
+cvp_configlets: {}
+cvp_topology:
+  DC1:
+    devices: []
+    parent_container: FABRIC
+  DC1_LEAFS:
+    devices:
+    - leaf1
+    - leaf2
+    - borderleaf1
+    parent_container: DC1
+  DC1_SPINES:
+    devices:
+    - spine1
+    - spine2
+    parent_container: DC1
+  DC2:
+    devices: []
+    parent_container: FABRIC
+  DC2_LEAFS:
+    devices:
+    - leaf3
+    - leaf4
+    - borderleaf2
+    parent_container: DC2
+  DC2_SPINES:
+    devices:
+    - spine3
+    - spine4
+    parent_container: DC2
+  FABRIC:
+    devices: []
+    parent_container: Tenant

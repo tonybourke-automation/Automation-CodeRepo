@@ -10,5 +10,4 @@
         cv_username: "{{ hostvars['cvp1'].ansible_user }}"
         cv_password: "{{ hostvars['cvp1'].ansible_password }}"
         cv_verify_certs: false
-        cv_configlets_prefix: 'AVD'
         cv_run_change_control: true

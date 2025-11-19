@@ -1,9 +1,12 @@
 Device,Test Name,Test Status,Message(s),Test description,Test category
-borderleaf1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+borderleaf1,VerifyBGPPeerSession,failure,'show bgp neighbors vrf all' failed on borderleaf1: BGP inactive,Verifies the session state of BGP peers.,BGP
 borderleaf1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 borderleaf1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
-borderleaf1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
-borderleaf1,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+borderleaf1,VerifyReachability,failure,Ping command 'ping vrf default 192.168.103.192 source 192.168.103.193 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.194 source 192.168.103.195 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.196 source 192.168.103.197 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.198 source 192.168.103.199 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+borderleaf1,VerifyReachability,failure,"'ping vrf default 192.168.101.11 source Loopback0 size 100 repeat 1' failed on borderleaf1: No source interface Loopback0
+'ping vrf default 192.168.101.12 source Loopback0 size 100 repeat 1' failed on borderleaf1: No source interface Loopback0
+'ping vrf default 192.168.101.13 source Loopback0 size 100 repeat 1' failed on borderleaf1: No source interface Loopback0
+'ping vrf default 192.168.101.14 source Loopback0 size 100 repeat 1' failed on borderleaf1: No source interface Loopback0",Verifies reachability to BGP neighbors with an update source configured.,Connectivity
 borderleaf1,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
 borderleaf1,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
 borderleaf1,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
@@ -14,12 +17,12 @@ borderleaf1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet
 borderleaf1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 borderleaf1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
 borderleaf1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
-borderleaf1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+borderleaf1,VerifyInterfacesStatus,failure,Loopback0 - Not configured - Loopback1 - Not configured - Port-Channel1 - Not configured - Vlan10 - Not configured - Vlan20 - Not configured - Vlan3009 - Not configured - Vlan4093 - Not configured - Vlan4094 - Not configured - Vxlan1 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
 borderleaf1,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
 borderleaf1,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
-borderleaf1,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
-borderleaf1,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
-borderleaf1,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+borderleaf1,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+borderleaf1,VerifyMlagInterfaces,skipped,MLAG is disabled,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+borderleaf1,VerifyMlagStatus,skipped,MLAG is disabled,Verifies the health status of the MLAG configuration.,MLAG
 borderleaf1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
 borderleaf1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
 borderleaf1,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
@@ -29,12 +32,15 @@ borderleaf1,VerifyMaintenance,success,,Verifies that the device is not currently
 borderleaf1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 borderleaf1,VerifyNTP,success,,Verifies if NTP is synchronised.,System
 borderleaf1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
-borderleaf1,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
-borderleaf2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+borderleaf1,VerifyVxlanConfigSanity,skipped,VXLAN is not configured,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+borderleaf2,VerifyBGPPeerSession,failure,'show bgp neighbors vrf all' failed on borderleaf2: BGP inactive,Verifies the session state of BGP peers.,BGP
 borderleaf2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 borderleaf2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
-borderleaf2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
-borderleaf2,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+borderleaf2,VerifyReachability,failure,Ping command 'ping vrf default 192.168.103.200 source 192.168.103.201 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.202 source 192.168.103.203 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.204 source 192.168.103.205 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.206 source 192.168.103.207 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+borderleaf2,VerifyReachability,failure,"'ping vrf default 192.168.101.11 source Loopback0 size 100 repeat 1' failed on borderleaf2: No source interface Loopback0
+'ping vrf default 192.168.101.12 source Loopback0 size 100 repeat 1' failed on borderleaf2: No source interface Loopback0
+'ping vrf default 192.168.101.13 source Loopback0 size 100 repeat 1' failed on borderleaf2: No source interface Loopback0
+'ping vrf default 192.168.101.14 source Loopback0 size 100 repeat 1' failed on borderleaf2: No source interface Loopback0",Verifies reachability to BGP neighbors with an update source configured.,Connectivity
 borderleaf2,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
 borderleaf2,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
 borderleaf2,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
@@ -45,12 +51,12 @@ borderleaf2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet
 borderleaf2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 borderleaf2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
 borderleaf2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
-borderleaf2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+borderleaf2,VerifyInterfacesStatus,failure,Loopback0 - Not configured - Loopback1 - Not configured - Port-Channel1 - Not configured - Vlan10 - Not configured - Vlan20 - Not configured - Vlan3009 - Not configured - Vlan4093 - Not configured - Vlan4094 - Not configured - Vxlan1 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
 borderleaf2,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
 borderleaf2,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
-borderleaf2,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
-borderleaf2,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
-borderleaf2,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+borderleaf2,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+borderleaf2,VerifyMlagInterfaces,skipped,MLAG is disabled,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+borderleaf2,VerifyMlagStatus,skipped,MLAG is disabled,Verifies the health status of the MLAG configuration.,MLAG
 borderleaf2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
 borderleaf2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
 borderleaf2,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
@@ -60,12 +66,15 @@ borderleaf2,VerifyMaintenance,success,,Verifies that the device is not currently
 borderleaf2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 borderleaf2,VerifyNTP,success,,Verifies if NTP is synchronised.,System
 borderleaf2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
-borderleaf2,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
-leaf1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+borderleaf2,VerifyVxlanConfigSanity,skipped,VXLAN is not configured,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf1,VerifyBGPPeerSession,failure,Peer: 10.255.251.1 VRF: default - Not found - Peer: 192.168.101.11 VRF: default - Not found - Peer: 192.168.101.12 VRF: default - Not found - Peer: 192.168.101.13 VRF: default - Not found - Peer: 192.168.101.14 VRF: default - Not found - Peer: 192.168.103.0 VRF: default - Not found - Peer: 192.168.103.2 VRF: default - Not found - Peer: 192.168.103.4 VRF: default - Not found - Peer: 192.168.103.6 VRF: default - Not found,Verifies the session state of BGP peers.,BGP
 leaf1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 leaf1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
-leaf1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
-leaf1,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf1,VerifyReachability,failure,Ping command 'ping vrf default 192.168.103.0 source 192.168.103.1 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.2 source 192.168.103.3 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.4 source 192.168.103.5 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.6 source 192.168.103.7 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf1,VerifyReachability,failure,"'ping vrf default 192.168.101.11 source Loopback0 size 100 repeat 1' failed on leaf1: No source interface Loopback0
+'ping vrf default 192.168.101.12 source Loopback0 size 100 repeat 1' failed on leaf1: No source interface Loopback0
+'ping vrf default 192.168.101.13 source Loopback0 size 100 repeat 1' failed on leaf1: No source interface Loopback0
+'ping vrf default 192.168.101.14 source Loopback0 size 100 repeat 1' failed on leaf1: No source interface Loopback0",Verifies reachability to BGP neighbors with an update source configured.,Connectivity
 leaf1,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
 leaf1,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
 leaf1,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
@@ -76,12 +85,12 @@ leaf1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet disca
 leaf1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 leaf1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
 leaf1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
-leaf1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf1,VerifyInterfacesStatus,failure,Loopback0 - Not configured - Loopback1 - Not configured - Port-Channel1 - Not configured - Port-Channel7 - Not configured - Port-Channel9 - Not configured - Vlan10 - Not configured - Vlan20 - Not configured - Vlan3009 - Not configured - Vlan4093 - Not configured - Vlan4094 - Not configured - Vxlan1 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
 leaf1,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
 leaf1,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
-leaf1,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
-leaf1,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
-leaf1,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf1,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf1,VerifyMlagInterfaces,skipped,MLAG is disabled,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf1,VerifyMlagStatus,skipped,MLAG is disabled,Verifies the health status of the MLAG configuration.,MLAG
 leaf1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
 leaf1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
 leaf1,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
@@ -91,12 +100,15 @@ leaf1,VerifyMaintenance,success,,Verifies that the device is not currently under
 leaf1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 leaf1,VerifyNTP,success,,Verifies if NTP is synchronised.,System
 leaf1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
-leaf1,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
-leaf2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf1,VerifyVxlanConfigSanity,skipped,VXLAN is not configured,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf2,VerifyBGPPeerSession,failure,'show bgp neighbors vrf all' failed on leaf2: BGP inactive,Verifies the session state of BGP peers.,BGP
 leaf2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 leaf2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
-leaf2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
-leaf2,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf2,VerifyReachability,failure,Ping command 'ping vrf default 192.168.103.8 source 192.168.103.9 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.10 source 192.168.103.11 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.12 source 192.168.103.13 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.14 source 192.168.103.15 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf2,VerifyReachability,failure,"'ping vrf default 192.168.101.11 source Loopback0 size 100 repeat 1' failed on leaf2: No source interface Loopback0
+'ping vrf default 192.168.101.12 source Loopback0 size 100 repeat 1' failed on leaf2: No source interface Loopback0
+'ping vrf default 192.168.101.13 source Loopback0 size 100 repeat 1' failed on leaf2: No source interface Loopback0
+'ping vrf default 192.168.101.14 source Loopback0 size 100 repeat 1' failed on leaf2: No source interface Loopback0",Verifies reachability to BGP neighbors with an update source configured.,Connectivity
 leaf2,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
 leaf2,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
 leaf2,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
@@ -107,12 +119,12 @@ leaf2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet disca
 leaf2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 leaf2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
 leaf2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
-leaf2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf2,VerifyInterfacesStatus,failure,Loopback0 - Not configured - Loopback1 - Not configured - Port-Channel1 - Not configured - Port-Channel7 - Not configured - Port-Channel9 - Not configured - Vlan10 - Not configured - Vlan20 - Not configured - Vlan3009 - Not configured - Vlan4093 - Not configured - Vlan4094 - Not configured - Vxlan1 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
 leaf2,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
 leaf2,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
-leaf2,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
-leaf2,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
-leaf2,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf2,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf2,VerifyMlagInterfaces,skipped,MLAG is disabled,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf2,VerifyMlagStatus,skipped,MLAG is disabled,Verifies the health status of the MLAG configuration.,MLAG
 leaf2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
 leaf2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
 leaf2,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
@@ -122,12 +134,15 @@ leaf2,VerifyMaintenance,success,,Verifies that the device is not currently under
 leaf2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 leaf2,VerifyNTP,success,,Verifies if NTP is synchronised.,System
 leaf2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
-leaf2,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
-leaf3,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf2,VerifyVxlanConfigSanity,skipped,VXLAN is not configured,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf3,VerifyBGPPeerSession,failure,'show bgp neighbors vrf all' failed on leaf3: BGP inactive,Verifies the session state of BGP peers.,BGP
 leaf3,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 leaf3,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
-leaf3,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
-leaf3,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf3,VerifyReachability,failure,Ping command 'ping vrf default 192.168.103.16 source 192.168.103.17 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.18 source 192.168.103.19 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.20 source 192.168.103.21 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.22 source 192.168.103.23 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf3,VerifyReachability,failure,"'ping vrf default 192.168.101.11 source Loopback0 size 100 repeat 1' failed on leaf3: No source interface Loopback0
+'ping vrf default 192.168.101.12 source Loopback0 size 100 repeat 1' failed on leaf3: No source interface Loopback0
+'ping vrf default 192.168.101.13 source Loopback0 size 100 repeat 1' failed on leaf3: No source interface Loopback0
+'ping vrf default 192.168.101.14 source Loopback0 size 100 repeat 1' failed on leaf3: No source interface Loopback0",Verifies reachability to BGP neighbors with an update source configured.,Connectivity
 leaf3,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
 leaf3,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
 leaf3,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
@@ -138,12 +153,12 @@ leaf3,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet disca
 leaf3,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 leaf3,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
 leaf3,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
-leaf3,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf3,VerifyInterfacesStatus,failure,Loopback0 - Not configured - Loopback1 - Not configured - Port-Channel1 - Not configured - Port-Channel7 - Not configured - Port-Channel9 - Not configured - Vlan10 - Not configured - Vlan20 - Not configured - Vlan3009 - Not configured - Vlan4093 - Not configured - Vlan4094 - Not configured - Vxlan1 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
 leaf3,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
 leaf3,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
-leaf3,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
-leaf3,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
-leaf3,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf3,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf3,VerifyMlagInterfaces,skipped,MLAG is disabled,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf3,VerifyMlagStatus,skipped,MLAG is disabled,Verifies the health status of the MLAG configuration.,MLAG
 leaf3,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
 leaf3,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
 leaf3,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
@@ -153,12 +168,15 @@ leaf3,VerifyMaintenance,success,,Verifies that the device is not currently under
 leaf3,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 leaf3,VerifyNTP,success,,Verifies if NTP is synchronised.,System
 leaf3,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
-leaf3,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
-leaf4,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf3,VerifyVxlanConfigSanity,skipped,VXLAN is not configured,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+leaf4,VerifyBGPPeerSession,failure,'show bgp neighbors vrf all' failed on leaf4: BGP inactive,Verifies the session state of BGP peers.,BGP
 leaf4,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 leaf4,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
-leaf4,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
-leaf4,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+leaf4,VerifyReachability,failure,Ping command 'ping vrf default 192.168.103.24 source 192.168.103.25 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.26 source 192.168.103.27 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.28 source 192.168.103.29 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.30 source 192.168.103.31 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+leaf4,VerifyReachability,failure,"'ping vrf default 192.168.101.11 source Loopback0 size 100 repeat 1' failed on leaf4: No source interface Loopback0
+'ping vrf default 192.168.101.12 source Loopback0 size 100 repeat 1' failed on leaf4: No source interface Loopback0
+'ping vrf default 192.168.101.13 source Loopback0 size 100 repeat 1' failed on leaf4: No source interface Loopback0
+'ping vrf default 192.168.101.14 source Loopback0 size 100 repeat 1' failed on leaf4: No source interface Loopback0",Verifies reachability to BGP neighbors with an update source configured.,Connectivity
 leaf4,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
 leaf4,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
 leaf4,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
@@ -169,12 +187,12 @@ leaf4,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet disca
 leaf4,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 leaf4,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
 leaf4,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
-leaf4,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+leaf4,VerifyInterfacesStatus,failure,Loopback0 - Not configured - Loopback1 - Not configured - Port-Channel1 - Not configured - Port-Channel7 - Not configured - Port-Channel9 - Not configured - Vlan10 - Not configured - Vlan20 - Not configured - Vlan3009 - Not configured - Vlan4093 - Not configured - Vlan4094 - Not configured - Vxlan1 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
 leaf4,VerifyPortChannels,success,,Verifies there are no inactive ports in port channels.,Interfaces
 leaf4,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
-leaf4,VerifyMlagConfigSanity,success,,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
-leaf4,VerifyMlagInterfaces,success,,Verifies there are no inactive or active-partial MLAG ports.,MLAG
-leaf4,VerifyMlagStatus,success,,Verifies the health status of the MLAG configuration.,MLAG
+leaf4,VerifyMlagConfigSanity,skipped,MLAG is disabled,Verifies there are no MLAG config-sanity inconsistencies.,MLAG
+leaf4,VerifyMlagInterfaces,skipped,MLAG is disabled,Verifies there are no inactive or active-partial MLAG ports.,MLAG
+leaf4,VerifyMlagStatus,skipped,MLAG is disabled,Verifies the health status of the MLAG configuration.,MLAG
 leaf4,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
 leaf4,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
 leaf4,VerifyAgentLogs,success,,Verifies there are no agent crash reports.,System
@@ -184,12 +202,17 @@ leaf4,VerifyMaintenance,success,,Verifies that the device is not currently under
 leaf4,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 leaf4,VerifyNTP,success,,Verifies if NTP is synchronised.,System
 leaf4,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
-leaf4,VerifyVxlanConfigSanity,success,,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
-spine1,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+leaf4,VerifyVxlanConfigSanity,skipped,VXLAN is not configured,Verifies there are no VXLAN config-sanity inconsistencies.,VXLAN
+spine1,VerifyBGPPeerSession,failure,'show bgp neighbors vrf all' failed on spine1: BGP inactive,Verifies the session state of BGP peers.,BGP
 spine1,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 spine1,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
-spine1,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
-spine1,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+spine1,VerifyReachability,failure,Ping command 'ping vrf default 192.168.103.1 source 192.168.103.0 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.9 source 192.168.103.8 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.17 source 192.168.103.16 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.25 source 192.168.103.24 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.193 source 192.168.103.192 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.201 source 192.168.103.200 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine1,VerifyReachability,failure,"'ping vrf default 192.168.101.1 source Loopback0 size 100 repeat 1' failed on spine1: No source interface Loopback0
+'ping vrf default 192.168.101.2 source Loopback0 size 100 repeat 1' failed on spine1: No source interface Loopback0
+'ping vrf default 192.168.101.3 source Loopback0 size 100 repeat 1' failed on spine1: No source interface Loopback0
+'ping vrf default 192.168.101.4 source Loopback0 size 100 repeat 1' failed on spine1: No source interface Loopback0
+'ping vrf default 192.168.101.25 source Loopback0 size 100 repeat 1' failed on spine1: No source interface Loopback0
+'ping vrf default 192.168.101.26 source Loopback0 size 100 repeat 1' failed on spine1: No source interface Loopback0",Verifies reachability to BGP neighbors with an update source configured.,Connectivity
 spine1,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
 spine1,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
 spine1,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
@@ -199,7 +222,7 @@ spine1,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet disc
 spine1,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 spine1,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
 spine1,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
-spine1,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine1,VerifyInterfacesStatus,failure,Loopback0 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
 spine1,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
 spine1,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
 spine1,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
@@ -210,11 +233,16 @@ spine1,VerifyMaintenance,success,,Verifies that the device is not currently unde
 spine1,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 spine1,VerifyNTP,success,,Verifies if NTP is synchronised.,System
 spine1,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
-spine2,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine2,VerifyBGPPeerSession,failure,'show bgp neighbors vrf all' failed on spine2: BGP inactive,Verifies the session state of BGP peers.,BGP
 spine2,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 spine2,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
-spine2,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
-spine2,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+spine2,VerifyReachability,failure,Ping command 'ping vrf default 192.168.103.3 source 192.168.103.2 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.11 source 192.168.103.10 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.19 source 192.168.103.18 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.27 source 192.168.103.26 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.195 source 192.168.103.194 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.203 source 192.168.103.202 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine2,VerifyReachability,failure,"'ping vrf default 192.168.101.1 source Loopback0 size 100 repeat 1' failed on spine2: No source interface Loopback0
+'ping vrf default 192.168.101.2 source Loopback0 size 100 repeat 1' failed on spine2: No source interface Loopback0
+'ping vrf default 192.168.101.3 source Loopback0 size 100 repeat 1' failed on spine2: No source interface Loopback0
+'ping vrf default 192.168.101.4 source Loopback0 size 100 repeat 1' failed on spine2: No source interface Loopback0
+'ping vrf default 192.168.101.25 source Loopback0 size 100 repeat 1' failed on spine2: No source interface Loopback0
+'ping vrf default 192.168.101.26 source Loopback0 size 100 repeat 1' failed on spine2: No source interface Loopback0",Verifies reachability to BGP neighbors with an update source configured.,Connectivity
 spine2,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
 spine2,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
 spine2,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
@@ -224,7 +252,7 @@ spine2,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet disc
 spine2,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 spine2,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
 spine2,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
-spine2,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine2,VerifyInterfacesStatus,failure,Loopback0 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
 spine2,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
 spine2,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
 spine2,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
@@ -235,11 +263,16 @@ spine2,VerifyMaintenance,success,,Verifies that the device is not currently unde
 spine2,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 spine2,VerifyNTP,success,,Verifies if NTP is synchronised.,System
 spine2,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
-spine3,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine3,VerifyBGPPeerSession,failure,'show bgp neighbors vrf all' failed on spine3: BGP inactive,Verifies the session state of BGP peers.,BGP
 spine3,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 spine3,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
-spine3,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
-spine3,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+spine3,VerifyReachability,failure,Ping command 'ping vrf default 192.168.103.5 source 192.168.103.4 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.13 source 192.168.103.12 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.21 source 192.168.103.20 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.29 source 192.168.103.28 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.197 source 192.168.103.196 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.205 source 192.168.103.204 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine3,VerifyReachability,failure,"'ping vrf default 192.168.101.1 source Loopback0 size 100 repeat 1' failed on spine3: No source interface Loopback0
+'ping vrf default 192.168.101.2 source Loopback0 size 100 repeat 1' failed on spine3: No source interface Loopback0
+'ping vrf default 192.168.101.3 source Loopback0 size 100 repeat 1' failed on spine3: No source interface Loopback0
+'ping vrf default 192.168.101.4 source Loopback0 size 100 repeat 1' failed on spine3: No source interface Loopback0
+'ping vrf default 192.168.101.25 source Loopback0 size 100 repeat 1' failed on spine3: No source interface Loopback0
+'ping vrf default 192.168.101.26 source Loopback0 size 100 repeat 1' failed on spine3: No source interface Loopback0",Verifies reachability to BGP neighbors with an update source configured.,Connectivity
 spine3,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
 spine3,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
 spine3,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
@@ -249,7 +282,7 @@ spine3,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet disc
 spine3,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 spine3,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
 spine3,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
-spine3,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine3,VerifyInterfacesStatus,failure,Loopback0 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
 spine3,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
 spine3,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
 spine3,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP
@@ -260,11 +293,16 @@ spine3,VerifyMaintenance,success,,Verifies that the device is not currently unde
 spine3,VerifyMemoryUtilization,success,,Verifies whether the memory utilization is below 75%.,System
 spine3,VerifyNTP,success,,Verifies if NTP is synchronised.,System
 spine3,VerifyReloadCause,success,,Verifies the last reload cause of the device.,System
-spine4,VerifyBGPPeerSession,success,,Verifies the session state of BGP peers.,BGP
+spine4,VerifyBGPPeerSession,failure,'show bgp neighbors vrf all' failed on spine4: BGP inactive,Verifies the session state of BGP peers.,BGP
 spine4,VerifyRunningConfigDiffs,success,,Verifies there is no difference between the running-config and the startup-config.,Configuration
 spine4,VerifyZeroTouch,success,,Verifies ZeroTouch is disabled.,Configuration
-spine4,VerifyReachability,success,,Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
-spine4,VerifyReachability,success,,Verifies reachability to BGP neighbors with an update source configured.,Connectivity
+spine4,VerifyReachability,failure,Ping command 'ping vrf default 192.168.103.7 source 192.168.103.6 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.15 source 192.168.103.14 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.23 source 192.168.103.22 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.31 source 192.168.103.30 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.199 source 192.168.103.198 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address' - Ping command 'ping vrf default 192.168.103.207 source 192.168.103.206 size 100 repeat 1' failed with an unexpected message: 'ping: bind: Cannot assign requested address',Verifies point-to-point reachability between Ethernet interfaces.,Connectivity
+spine4,VerifyReachability,failure,"'ping vrf default 192.168.101.1 source Loopback0 size 100 repeat 1' failed on spine4: No source interface Loopback0
+'ping vrf default 192.168.101.2 source Loopback0 size 100 repeat 1' failed on spine4: No source interface Loopback0
+'ping vrf default 192.168.101.3 source Loopback0 size 100 repeat 1' failed on spine4: No source interface Loopback0
+'ping vrf default 192.168.101.4 source Loopback0 size 100 repeat 1' failed on spine4: No source interface Loopback0
+'ping vrf default 192.168.101.25 source Loopback0 size 100 repeat 1' failed on spine4: No source interface Loopback0
+'ping vrf default 192.168.101.26 source Loopback0 size 100 repeat 1' failed on spine4: No source interface Loopback0",Verifies reachability to BGP neighbors with an update source configured.,Connectivity
 spine4,VerifyEnvironmentCooling,skipped,VerifyEnvironmentCooling test is not supported on vEOS-lab,Verifies the status of power supply fans and all fan trays.,Hardware
 spine4,VerifyEnvironmentPower,skipped,VerifyEnvironmentPower test is not supported on vEOS-lab,Verifies the power supplies state and input voltage.,Hardware
 spine4,VerifyEnvironmentSystemCooling,skipped,VerifyEnvironmentSystemCooling test is not supported on vEOS-lab,Verifies the device's system cooling status.,Hardware
@@ -274,7 +312,7 @@ spine4,VerifyInterfaceDiscards,success,,Verifies that the interfaces packet disc
 spine4,VerifyInterfaceErrDisabled,success,,Verifies there are no interfaces in the errdisabled state.,Interfaces
 spine4,VerifyInterfaceErrors,success,,Verifies that the interfaces error counters are equal to zero.,Interfaces
 spine4,VerifyInterfaceUtilization,success,,Verifies that the utilization of interfaces is below a certain threshold.,Interfaces
-spine4,VerifyInterfacesStatus,success,,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
+spine4,VerifyInterfacesStatus,failure,Loopback0 - Not configured,Verifies the operational states of specified interfaces to ensure they match expected configurations.,Interfaces
 spine4,VerifyStormControlDrops,skipped,VerifyStormControlDrops test is not supported on vEOS-lab,Verifies there are no interface storm-control drop counters.,Interfaces
 spine4,VerifyRoutingProtocolModel,success,,Verifies the configured routing protocol model.,Routing
 spine4,VerifySTPCounters,success,,Verifies there is no errors in STP BPDU packets.,STP

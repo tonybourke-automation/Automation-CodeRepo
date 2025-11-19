@@ -139,8 +139,6 @@ sFlow is enabled.
 | Ethernet4 | True | - |
 | Ethernet5 | True | - |
 | Ethernet6 | True | - |
-| Ethernet7 | True | - |
-| Ethernet8 | True | - |
 
 #### SFlow Device Configuration
 
@@ -203,8 +201,6 @@ vlan internal order ascending range 1006 1199
 | Ethernet4 | P2P_leaf2_Ethernet5 | - | 192.168.103.12/31 | default | 1500 | False | - | - |
 | Ethernet5 | P2P_leaf3_Ethernet5 | - | 192.168.103.20/31 | default | 1500 | False | - | - |
 | Ethernet6 | P2P_leaf4_Ethernet5 | - | 192.168.103.28/31 | default | 1500 | False | - | - |
-| Ethernet7 | P2P_borderleaf1_Ethernet5 | - | 192.168.103.196/31 | default | 1500 | False | - | - |
-| Ethernet8 | P2P_borderleaf2_Ethernet5 | - | 192.168.103.204/31 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
@@ -240,22 +236,6 @@ interface Ethernet6
    mtu 1500
    no switchport
    ip address 192.168.103.28/31
-   sflow enable
-!
-interface Ethernet7
-   description P2P_borderleaf1_Ethernet5
-   no shutdown
-   mtu 1500
-   no switchport
-   ip address 192.168.103.196/31
-   sflow enable
-!
-interface Ethernet8
-   description P2P_borderleaf2_Ethernet5
-   no shutdown
-   mtu 1500
-   no switchport
-   ip address 192.168.103.204/31
    sflow enable
 ```
 
@@ -367,14 +347,10 @@ ASN Notation: asplain
 | 192.168.101.2 | 65100 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 192.168.101.3 | 65299 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 192.168.101.4 | 65299 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
-| 192.168.101.25 | 65124 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
-| 192.168.101.26 | 65124 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 192.168.103.5 | 65100 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 192.168.103.13 | 65100 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 192.168.103.21 | 65299 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 | 192.168.103.29 | 65299 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
-| 192.168.103.197 | 65124 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
-| 192.168.103.205 | 65124 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -414,12 +390,6 @@ router bgp 65001
    neighbor 192.168.101.4 peer group EVPN-OVERLAY-PEERS
    neighbor 192.168.101.4 remote-as 65299
    neighbor 192.168.101.4 description leaf4_Loopback0
-   neighbor 192.168.101.25 peer group EVPN-OVERLAY-PEERS
-   neighbor 192.168.101.25 remote-as 65124
-   neighbor 192.168.101.25 description borderleaf1_Loopback0
-   neighbor 192.168.101.26 peer group EVPN-OVERLAY-PEERS
-   neighbor 192.168.101.26 remote-as 65124
-   neighbor 192.168.101.26 description borderleaf2_Loopback0
    neighbor 192.168.103.5 peer group IPv4-UNDERLAY-PEERS
    neighbor 192.168.103.5 remote-as 65100
    neighbor 192.168.103.5 description leaf1_Ethernet5
@@ -432,12 +402,6 @@ router bgp 65001
    neighbor 192.168.103.29 peer group IPv4-UNDERLAY-PEERS
    neighbor 192.168.103.29 remote-as 65299
    neighbor 192.168.103.29 description leaf4_Ethernet5
-   neighbor 192.168.103.197 peer group IPv4-UNDERLAY-PEERS
-   neighbor 192.168.103.197 remote-as 65124
-   neighbor 192.168.103.197 description borderleaf1_Ethernet5
-   neighbor 192.168.103.205 peer group IPv4-UNDERLAY-PEERS
-   neighbor 192.168.103.205 remote-as 65124
-   neighbor 192.168.103.205 description borderleaf2_Ethernet5
    redistribute connected route-map RM-CONN-2-BGP
    !
    address-family evpn
