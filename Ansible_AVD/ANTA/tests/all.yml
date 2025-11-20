@@ -1,0 +1,13 @@
+anta.tests.system:
+  - VerifyUptime:
+      minimum: 600
+
+anta.tests.configuration:
+  - VerifyRunningConfigDiffs:
+
+anta.tests.software:
+    - VerifyTerminAttrVersion:
+        versions:
+## Allowed versions of TerminAttr
+        - v1.30.0
+        - v1.32.99_devel
