@@ -311,6 +311,14 @@ router_bgp:
       - 10020:10020
     redistribute_routes:
     - learned
+  - id: 30
+    tenant: ACME
+    rd: 192.168.101.1:10030
+    route_targets:
+      both:
+      - 10030:10030
+    redistribute_routes:
+    - learned
   address_family_evpn:
     peer_groups:
     - name: EVPN-OVERLAY-PEERS
@@ -387,6 +395,12 @@ vlan_interfaces:
   vrf: VRF_A
   ip_address_virtual: 10.1.20.1/24
   tenant: ACME
+- name: Vlan30
+  description: Test
+  shutdown: false
+  vrf: VRF_A
+  ip_address_virtual: 10.1.30.1/24
+  tenant: ACME
 - name: Vlan3009
   description: MLAG_L3_VRF_VRF_A
   shutdown: false
@@ -417,6 +431,9 @@ vlans:
 - id: 20
   name: Internal
   tenant: ACME
+- id: 30
+  name: Test
+  tenant: ACME
 - id: 3009
   name: MLAG_L3_VRF_VRF_A
   trunk_groups:
@@ -440,6 +457,8 @@ vxlan_interface:
         vni: 10010
       - id: 20
         vni: 10020
+      - id: 30
+        vni: 10030
       vrfs:
       - name: VRF_A
         vni: 10

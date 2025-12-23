@@ -27,6 +27,9 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1500
   ip_address: 192.168.103.25/31
+  pim:
+    ipv4:
+      sparse_mode: true
   peer: spine1
   peer_interface: Ethernet6
   peer_type: spine
@@ -39,6 +42,9 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1500
   ip_address: 192.168.103.27/31
+  pim:
+    ipv4:
+      sparse_mode: true
   peer: spine2
   peer_interface: Ethernet6
   peer_type: spine
@@ -51,6 +57,9 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1500
   ip_address: 192.168.103.29/31
+  pim:
+    ipv4:
+      sparse_mode: true
   peer: spine3
   peer_interface: Ethernet6
   peer_type: spine
@@ -63,6 +72,9 @@ ethernet_interfaces:
   shutdown: false
   mtu: 1500
   ip_address: 192.168.103.31/31
+  pim:
+    ipv4:
+      sparse_mode: true
   peer: spine4
   peer_interface: Ethernet6
   peer_type: spine
@@ -89,6 +101,15 @@ ethernet_interfaces:
 hostname: leaf4
 ip_igmp_snooping:
   globally_enabled: true
+  vlans:
+  - id: 10
+    querier:
+      enabled: true
+      address: 192.168.101.4
+  - id: 20
+    querier:
+      enabled: true
+      address: 192.168.101.4
 ip_routing: true
 ip_virtual_router_mac_address: 00:1c:73:00:00:99
 loopback_interfaces:
@@ -100,6 +121,11 @@ loopback_interfaces:
   description: VXLAN_TUNNEL_SOURCE
   shutdown: false
   ip_address: 192.168.102.3/32
+- name: Loopback99
+  description: DIAG_VRF_VRF_A
+  shutdown: false
+  vrf: VRF_A
+  ip_address: 192.168.109.4/32
 management_api_gnmi:
   provider: eos-native
   transport:
@@ -309,14 +335,6 @@ router_bgp:
       - 10020:10020
     redistribute_routes:
     - learned
-  - id: 30
-    tenant: ACME
-    rd: 192.168.101.4:10030
-    route_targets:
-      both:
-      - 10030:10030
-    redistribute_routes:
-    - learned
   address_family_evpn:
     peer_groups:
     - name: EVPN-OVERLAY-PEERS
@@ -332,6 +350,7 @@ router_bgp:
   vrfs:
   - name: VRF_A
     rd: 192.168.101.4:10
+    evpn_multicast: true
     route_targets:
       import:
       - address_family: evpn
@@ -350,6 +369,14 @@ router_bgp:
       connected:
         enabled: true
         route_map: RM-CONN-2-BGP-VRFS
+router_multicast:
+  ipv4:
+    routing: true
+    software_forwarding: sfe
+  vrfs:
+  - name: VRF_A
+    ipv4:
+      routing: true
 service_routing_protocols_model: multi-agent
 sflow:
   sample: 4096
@@ -369,11 +396,17 @@ spanning_tree:
     priority: 16384
   no_spanning_tree_vlan: 4093-4094
 transceiver_qsfp_default_mode_4x10: true
+virtual_source_nat_vrfs:
+- name: VRF_A
+  ip_address: 192.168.109.4
 vlan_interfaces:
 - name: Vlan4093
   description: MLAG_L3
   shutdown: false
   ip_address: 10.255.251.5/31
+  pim:
+    ipv4:
+      sparse_mode: true
   mtu: 1500
 - name: Vlan4094
   description: MLAG
@@ -386,18 +419,20 @@ vlan_interfaces:
   shutdown: false
   vrf: VRF_A
   ip_address_virtual: 10.1.10.1/24
+  pim:
+    ipv4:
+      sparse_mode: true
+      local_interface: Loopback99
   tenant: ACME
 - name: Vlan20
   description: Internal
   shutdown: false
   vrf: VRF_A
   ip_address_virtual: 10.1.20.1/24
-  tenant: ACME
-- name: Vlan30
-  description: Test
-  shutdown: false
-  vrf: VRF_A
-  ip_address_virtual: 10.1.30.1/24
+  pim:
+    ipv4:
+      sparse_mode: true
+      local_interface: Loopback99
   tenant: ACME
 - name: Vlan3009
   description: MLAG_L3_VRF_VRF_A
@@ -429,9 +464,6 @@ vlans:
 - id: 20
   name: Internal
   tenant: ACME
-- id: 30
-  name: Test
-  tenant: ACME
 - id: 3009
   name: MLAG_L3_VRF_VRF_A
   trunk_groups:
@@ -447,19 +479,21 @@ vxlan_interface:
   vxlan1:
     description: leaf4_VTEP
     vxlan:
-      source_interface: Loopback1
+      source_interface: Loopback0
+      mlag_source_interface: Loopback1
       udp_port: 4789
       virtual_router_encapsulation_mac_address: mlag-system-id
       vlans:
       - id: 10
         vni: 10010
+        multicast_group: 239.99.99.9
       - id: 20
         vni: 10020
-      - id: 30
-        vni: 10030
+        multicast_group: 239.99.99.19
       vrfs:
       - name: VRF_A
         vni: 10
+        multicast_group: 239.0.100.1
 snmp_settings:
   vrfs:
   - name: MGMT

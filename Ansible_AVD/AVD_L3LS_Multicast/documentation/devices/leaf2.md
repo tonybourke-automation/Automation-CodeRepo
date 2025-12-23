@@ -1,4 +1,4 @@
-# leaf1
+# leaf2
 
 ## Table of Contents
 
@@ -38,12 +38,17 @@
   - [Router BFD](#router-bfd)
 - [Multicast](#multicast)
   - [IP IGMP Snooping](#ip-igmp-snooping)
+  - [Router Multicast](#router-multicast)
+  - [PIM Sparse Mode](#pim-sparse-mode)
 - [Filters](#filters)
   - [Prefix-lists](#prefix-lists)
   - [Route-maps](#route-maps)
 - [VRF Instances](#vrf-instances)
   - [VRF Instances Summary](#vrf-instances-summary)
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
+- [Virtual Source NAT](#virtual-source-nat)
+  - [Virtual Source NAT Summary](#virtual-source-nat-summary)
+  - [Virtual Source NAT Configuration](#virtual-source-nat-configuration)
 
 ## Management
 
@@ -55,7 +60,7 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | OOB_MANAGEMENT | oob | MGMT | 192.168.0.21/24 | - |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | 192.168.0.22/24 | - |
 
 ##### IPv6
 
@@ -71,7 +76,7 @@ interface Management1
    description OOB_MANAGEMENT
    no shutdown
    vrf MGMT
-   ip address 192.168.0.21/24
+   ip address 192.168.0.22/24
 ```
 
 ### Management API gNMI
@@ -173,7 +178,7 @@ sflow run
 
 | Domain-id | Local-interface | Peer-address | Peer-link |
 | --------- | --------------- | ------------ | --------- |
-| mlag1 | Vlan4094 | 10.255.252.1 | Port-Channel1 |
+| mlag1 | Vlan4094 | 10.255.252.0 | Port-Channel1 |
 
 Dual primary detection is disabled.
 
@@ -184,7 +189,7 @@ Dual primary detection is disabled.
 mlag configuration
    domain-id mlag1
    local-interface Vlan4094
-   peer-address 10.255.252.1
+   peer-address 10.255.252.0
    peer-link Port-Channel1
    reload-delay mlag 300
    reload-delay non-mlag 330
@@ -238,7 +243,6 @@ vlan internal order ascending range 1006 1199
 | ------- | ---- | ------------ |
 | 10 | DMZ | - |
 | 20 | Internal | - |
-| 30 | Test | - |
 | 3009 | MLAG_L3_VRF_VRF_A | MLAG |
 | 4093 | MLAG_L3 | MLAG |
 | 4094 | MLAG | MLAG |
@@ -252,9 +256,6 @@ vlan 10
 !
 vlan 20
    name Internal
-!
-vlan 30
-   name Test
 !
 vlan 3009
    name MLAG_L3_VRF_VRF_A
@@ -279,10 +280,10 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | MLAG_leaf2_Ethernet1 | *trunk | *- | *- | *MLAG | 1 |
-| Ethernet2 | MLAG_leaf2_Ethernet2 | *trunk | *- | *- | *MLAG | 1 |
-| Ethernet7 | SERVER_host1_Ethernet1 | *access | *10 | *- | *- | 7 |
-| Ethernet9 | SERVER_host2_Ethernet1 | *access | *20 | *- | *- | 9 |
+| Ethernet1 | MLAG_leaf1_Ethernet1 | *trunk | *- | *- | *MLAG | 1 |
+| Ethernet2 | MLAG_leaf1_Ethernet2 | *trunk | *- | *- | *MLAG | 1 |
+| Ethernet7 | SERVER_host1_Ethernet2 | *access | *10 | *- | *- | 7 |
+| Ethernet9 | SERVER_host2_Ethernet2 | *access | *20 | *- | *- | 9 |
 
 *Inherited from Port-Channel Interface
 
@@ -290,64 +291,68 @@ vlan 4094
 
 | Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet3 | P2P_spine1_Ethernet3 | - | 192.168.103.1/31 | default | 1500 | False | - | - |
-| Ethernet4 | P2P_spine2_Ethernet3 | - | 192.168.103.3/31 | default | 1500 | False | - | - |
-| Ethernet5 | P2P_spine3_Ethernet3 | - | 192.168.103.5/31 | default | 1500 | False | - | - |
-| Ethernet6 | P2P_spine4_Ethernet3 | - | 192.168.103.7/31 | default | 1500 | False | - | - |
+| Ethernet3 | P2P_spine1_Ethernet4 | - | 192.168.103.9/31 | default | 1500 | False | - | - |
+| Ethernet4 | P2P_spine2_Ethernet4 | - | 192.168.103.11/31 | default | 1500 | False | - | - |
+| Ethernet5 | P2P_spine3_Ethernet4 | - | 192.168.103.13/31 | default | 1500 | False | - | - |
+| Ethernet6 | P2P_spine4_Ethernet4 | - | 192.168.103.15/31 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1
-   description MLAG_leaf2_Ethernet1
+   description MLAG_leaf1_Ethernet1
    no shutdown
    channel-group 1 mode active
 !
 interface Ethernet2
-   description MLAG_leaf2_Ethernet2
+   description MLAG_leaf1_Ethernet2
    no shutdown
    channel-group 1 mode active
 !
 interface Ethernet3
-   description P2P_spine1_Ethernet3
+   description P2P_spine1_Ethernet4
    no shutdown
    mtu 1500
    no switchport
-   ip address 192.168.103.1/31
+   ip address 192.168.103.9/31
+   pim ipv4 sparse-mode
    sflow enable
 !
 interface Ethernet4
-   description P2P_spine2_Ethernet3
+   description P2P_spine2_Ethernet4
    no shutdown
    mtu 1500
    no switchport
-   ip address 192.168.103.3/31
+   ip address 192.168.103.11/31
+   pim ipv4 sparse-mode
    sflow enable
 !
 interface Ethernet5
-   description P2P_spine3_Ethernet3
+   description P2P_spine3_Ethernet4
    no shutdown
    mtu 1500
    no switchport
-   ip address 192.168.103.5/31
+   ip address 192.168.103.13/31
+   pim ipv4 sparse-mode
    sflow enable
 !
 interface Ethernet6
-   description P2P_spine4_Ethernet3
+   description P2P_spine4_Ethernet4
    no shutdown
    mtu 1500
    no switchport
-   ip address 192.168.103.7/31
+   ip address 192.168.103.15/31
+   pim ipv4 sparse-mode
    sflow enable
 !
 interface Ethernet7
-   description SERVER_host1_Ethernet1
+   description SERVER_host1_Ethernet2
    no shutdown
    channel-group 7 mode active
 !
 interface Ethernet9
-   description SERVER_host2_Ethernet1
+   description SERVER_host2_Ethernet2
    no shutdown
    channel-group 9 mode active
 ```
@@ -360,7 +365,7 @@ interface Ethernet9
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
 | --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | MLAG_leaf2_Port-Channel1 | trunk | - | - | MLAG | - | - | - | - |
+| Port-Channel1 | MLAG_leaf1_Port-Channel1 | trunk | - | - | MLAG | - | - | - | - |
 | Port-Channel7 | PortChannel host1 | access | 10 | - | - | - | - | 7 | - |
 | Port-Channel9 | Connection to host2 | access | 20 | - | - | - | - | 9 | - |
 
@@ -369,7 +374,7 @@ interface Ethernet9
 ```eos
 !
 interface Port-Channel1
-   description MLAG_leaf2_Port-Channel1
+   description MLAG_leaf1_Port-Channel1
    no shutdown
    switchport mode trunk
    switchport trunk group MLAG
@@ -405,8 +410,9 @@ interface Port-Channel9
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | ROUTER_ID | default | 192.168.101.1/32 |
+| Loopback0 | ROUTER_ID | default | 192.168.101.2/32 |
 | Loopback1 | VXLAN_TUNNEL_SOURCE | default | 192.168.102.1/32 |
+| Loopback99 | DIAG_VRF_VRF_A | VRF_A | 192.168.109.2/32 |
 
 ##### IPv6
 
@@ -414,6 +420,7 @@ interface Port-Channel9
 | --------- | ----------- | --- | ------------ |
 | Loopback0 | ROUTER_ID | default | - |
 | Loopback1 | VXLAN_TUNNEL_SOURCE | default | - |
+| Loopback99 | DIAG_VRF_VRF_A | VRF_A | - |
 
 #### Loopback Interfaces Device Configuration
 
@@ -422,12 +429,18 @@ interface Port-Channel9
 interface Loopback0
    description ROUTER_ID
    no shutdown
-   ip address 192.168.101.1/32
+   ip address 192.168.101.2/32
 !
 interface Loopback1
    description VXLAN_TUNNEL_SOURCE
    no shutdown
    ip address 192.168.102.1/32
+!
+interface Loopback99
+   description DIAG_VRF_VRF_A
+   no shutdown
+   vrf VRF_A
+   ip address 192.168.109.2/32
 ```
 
 ### VLAN Interfaces
@@ -438,7 +451,6 @@ interface Loopback1
 | --------- | ----------- | --- | ---- | -------- |
 | Vlan10 | DMZ | VRF_A | - | False |
 | Vlan20 | Internal | VRF_A | - | False |
-| Vlan30 | Test | VRF_A | - | False |
 | Vlan3009 | MLAG_L3_VRF_VRF_A | VRF_A | 1500 | False |
 | Vlan4093 | MLAG_L3 | default | 1500 | False |
 | Vlan4094 | MLAG | default | 1500 | False |
@@ -449,10 +461,9 @@ interface Loopback1
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
 | Vlan10 |  VRF_A  |  -  |  10.1.10.1/24  |  -  |  -  |  -  |
 | Vlan20 |  VRF_A  |  -  |  10.1.20.1/24  |  -  |  -  |  -  |
-| Vlan30 |  VRF_A  |  -  |  10.1.30.1/24  |  -  |  -  |  -  |
-| Vlan3009 |  VRF_A  |  10.255.251.0/31  |  -  |  -  |  -  |  -  |
-| Vlan4093 |  default  |  10.255.251.0/31  |  -  |  -  |  -  |  -  |
-| Vlan4094 |  default  |  10.255.252.0/31  |  -  |  -  |  -  |  -  |
+| Vlan3009 |  VRF_A  |  10.255.251.1/31  |  -  |  -  |  -  |  -  |
+| Vlan4093 |  default  |  10.255.251.1/31  |  -  |  -  |  -  |  -  |
+| Vlan4094 |  default  |  10.255.252.1/31  |  -  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
@@ -462,39 +473,38 @@ interface Vlan10
    description DMZ
    no shutdown
    vrf VRF_A
+   pim ipv4 sparse-mode
+   pim ipv4 local-interface Loopback99
    ip address virtual 10.1.10.1/24
 !
 interface Vlan20
    description Internal
    no shutdown
    vrf VRF_A
+   pim ipv4 sparse-mode
+   pim ipv4 local-interface Loopback99
    ip address virtual 10.1.20.1/24
-!
-interface Vlan30
-   description Test
-   no shutdown
-   vrf VRF_A
-   ip address virtual 10.1.30.1/24
 !
 interface Vlan3009
    description MLAG_L3_VRF_VRF_A
    no shutdown
    mtu 1500
    vrf VRF_A
-   ip address 10.255.251.0/31
+   ip address 10.255.251.1/31
 !
 interface Vlan4093
    description MLAG_L3
    no shutdown
    mtu 1500
-   ip address 10.255.251.0/31
+   ip address 10.255.251.1/31
+   pim ipv4 sparse-mode
 !
 interface Vlan4094
    description MLAG
    no shutdown
    mtu 1500
    no autostate
-   ip address 10.255.252.0/31
+   ip address 10.255.252.1/31
 ```
 
 ### VXLAN Interface
@@ -503,7 +513,8 @@ interface Vlan4094
 
 | Setting | Value |
 | ------- | ----- |
-| Source Interface | Loopback1 |
+| Source Interface | Loopback0 |
+| MLAG Source Interface | Loopback1 |
 | UDP port | 4789 |
 | EVPN MLAG Shared Router MAC | mlag-system-id |
 
@@ -511,29 +522,31 @@ interface Vlan4094
 
 | VLAN | VNI | Flood List | Multicast Group |
 | ---- | --- | ---------- | --------------- |
-| 10 | 10010 | - | - |
-| 20 | 10020 | - | - |
-| 30 | 10030 | - | - |
+| 10 | 10010 | - | 239.99.99.9 |
+| 20 | 10020 | - | 239.99.99.19 |
 
 ##### VRF to VNI and Multicast Group Mappings
 
 | VRF | VNI | Overlay Multicast Group to Encap Mappings |
 | --- | --- | ----------------------------------------- |
-| VRF_A | 10 | - |
+| VRF_A | 10 | default -> 239.0.100.1 |
 
 #### VXLAN Interface Device Configuration
 
 ```eos
 !
 interface Vxlan1
-   description leaf1_VTEP
-   vxlan source-interface Loopback1
+   description leaf2_VTEP
+   vxlan source-interface Loopback0
    vxlan virtual-router encapsulation mac-address mlag-system-id
    vxlan udp-port 4789
    vxlan vlan 10 vni 10010
    vxlan vlan 20 vni 10020
-   vxlan vlan 30 vni 10030
    vxlan vrf VRF_A vni 10
+   vxlan mlag source-interface Loopback1
+   vxlan vlan 10 multicast group 239.99.99.9
+   vxlan vlan 20 multicast group 239.99.99.19
+   vxlan vrf VRF_A multicast group 239.0.100.1
 ```
 
 ## Routing
@@ -597,7 +610,7 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65100 | 192.168.101.1 |
+| 65100 | 192.168.101.2 |
 
 | BGP Tuning |
 | ---------- |
@@ -639,16 +652,16 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 10.255.251.1 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | default | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
+| 10.255.251.0 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | default | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
 | 192.168.101.11 | 65001 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 192.168.101.12 | 65001 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 192.168.101.13 | 65001 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 192.168.101.14 | 65001 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
-| 192.168.103.0 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
-| 192.168.103.2 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
-| 192.168.103.4 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
-| 192.168.103.6 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
-| 10.255.251.1 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | VRF_A | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
+| 192.168.103.8 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 192.168.103.10 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 192.168.103.12 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 192.168.103.14 | 65001 | default | - | Inherited from peer group IPv4-UNDERLAY-PEERS | Inherited from peer group IPv4-UNDERLAY-PEERS | - | - | - | - | - | - |
+| 10.255.251.0 | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | VRF_A | - | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | Inherited from peer group MLAG-IPv4-UNDERLAY-PEER | - | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -662,22 +675,21 @@ ASN Notation: asplain
 
 | VLAN | Route-Distinguisher | Both Route-Target | Import Route Target | Export Route-Target | Redistribute |
 | ---- | ------------------- | ----------------- | ------------------- | ------------------- | ------------ |
-| 10 | 192.168.101.1:10010 | 10010:10010 | - | - | learned |
-| 20 | 192.168.101.1:10020 | 10020:10020 | - | - | learned |
-| 30 | 192.168.101.1:10030 | 10030:10030 | - | - | learned |
+| 10 | 192.168.101.2:10010 | 10010:10010 | - | - | learned |
+| 20 | 192.168.101.2:10020 | 10020:10020 | - | - | learned |
 
 #### Router BGP VRFs
 
-| VRF | Route-Distinguisher | Redistribute | Graceful Restart |
-| --- | ------------------- | ------------ | ---------------- |
-| VRF_A | 192.168.101.1:10 | connected | - |
+| VRF | Route-Distinguisher | Redistribute | Graceful Restart | EVPN Multicast |
+| --- | ------------------- | ------------ | ---------------- | -------------- |
+| VRF_A | 192.168.101.2:10 | connected | - | IPv4: True<br>Transit: False |
 
 #### Router BGP Device Configuration
 
 ```eos
 !
 router bgp 65100
-   router-id 192.168.101.1
+   router-id 192.168.101.2
    no bgp default ipv4-unicast
    maximum-paths 4 ecmp 4
    neighbor EVPN-OVERLAY-PEERS peer group
@@ -692,12 +704,12 @@ router bgp 65100
    neighbor MLAG-IPv4-UNDERLAY-PEER peer group
    neighbor MLAG-IPv4-UNDERLAY-PEER remote-as 65100
    neighbor MLAG-IPv4-UNDERLAY-PEER next-hop-self
-   neighbor MLAG-IPv4-UNDERLAY-PEER description leaf2
+   neighbor MLAG-IPv4-UNDERLAY-PEER description leaf1
    neighbor MLAG-IPv4-UNDERLAY-PEER route-map RM-MLAG-PEER-IN in
    neighbor MLAG-IPv4-UNDERLAY-PEER send-community
    neighbor MLAG-IPv4-UNDERLAY-PEER maximum-routes 12000
-   neighbor 10.255.251.1 peer group MLAG-IPv4-UNDERLAY-PEER
-   neighbor 10.255.251.1 description leaf2_Vlan4093
+   neighbor 10.255.251.0 peer group MLAG-IPv4-UNDERLAY-PEER
+   neighbor 10.255.251.0 description leaf1_Vlan4093
    neighbor 192.168.101.11 peer group EVPN-OVERLAY-PEERS
    neighbor 192.168.101.11 remote-as 65001
    neighbor 192.168.101.11 description spine1_Loopback0
@@ -710,33 +722,28 @@ router bgp 65100
    neighbor 192.168.101.14 peer group EVPN-OVERLAY-PEERS
    neighbor 192.168.101.14 remote-as 65001
    neighbor 192.168.101.14 description spine4_Loopback0
-   neighbor 192.168.103.0 peer group IPv4-UNDERLAY-PEERS
-   neighbor 192.168.103.0 remote-as 65001
-   neighbor 192.168.103.0 description spine1_Ethernet3
-   neighbor 192.168.103.2 peer group IPv4-UNDERLAY-PEERS
-   neighbor 192.168.103.2 remote-as 65001
-   neighbor 192.168.103.2 description spine2_Ethernet3
-   neighbor 192.168.103.4 peer group IPv4-UNDERLAY-PEERS
-   neighbor 192.168.103.4 remote-as 65001
-   neighbor 192.168.103.4 description spine3_Ethernet3
-   neighbor 192.168.103.6 peer group IPv4-UNDERLAY-PEERS
-   neighbor 192.168.103.6 remote-as 65001
-   neighbor 192.168.103.6 description spine4_Ethernet3
+   neighbor 192.168.103.8 peer group IPv4-UNDERLAY-PEERS
+   neighbor 192.168.103.8 remote-as 65001
+   neighbor 192.168.103.8 description spine1_Ethernet4
+   neighbor 192.168.103.10 peer group IPv4-UNDERLAY-PEERS
+   neighbor 192.168.103.10 remote-as 65001
+   neighbor 192.168.103.10 description spine2_Ethernet4
+   neighbor 192.168.103.12 peer group IPv4-UNDERLAY-PEERS
+   neighbor 192.168.103.12 remote-as 65001
+   neighbor 192.168.103.12 description spine3_Ethernet4
+   neighbor 192.168.103.14 peer group IPv4-UNDERLAY-PEERS
+   neighbor 192.168.103.14 remote-as 65001
+   neighbor 192.168.103.14 description spine4_Ethernet4
    redistribute connected route-map RM-CONN-2-BGP
    !
    vlan 10
-      rd 192.168.101.1:10010
+      rd 192.168.101.2:10010
       route-target both 10010:10010
       redistribute learned
    !
    vlan 20
-      rd 192.168.101.1:10020
+      rd 192.168.101.2:10020
       route-target both 10020:10020
-      redistribute learned
-   !
-   vlan 30
-      rd 192.168.101.1:10030
-      route-target both 10030:10030
       redistribute learned
    !
    address-family evpn
@@ -748,13 +755,14 @@ router bgp 65100
       neighbor MLAG-IPv4-UNDERLAY-PEER activate
    !
    vrf VRF_A
-      rd 192.168.101.1:10
+      rd 192.168.101.2:10
       route-target import evpn 10:10
       route-target export evpn 10:10
-      router-id 192.168.101.1
-      neighbor 10.255.251.1 peer group MLAG-IPv4-UNDERLAY-PEER
-      neighbor 10.255.251.1 description leaf2_Vlan3009
+      router-id 192.168.101.2
+      neighbor 10.255.251.0 peer group MLAG-IPv4-UNDERLAY-PEER
+      neighbor 10.255.251.0 description leaf1_Vlan3009
       redistribute connected route-map RM-CONN-2-BGP-VRFS
+      evpn multicast
 ```
 
 ## BFD
@@ -785,10 +793,68 @@ router bfd
 | ------------- | ---------- | ----------------------- | ----- | ---------------------- | ------------------- |
 | Enabled | - | - | - | - | - |
 
+##### IP IGMP Snooping Vlan Summary
+
+| Vlan | IGMP Snooping | Fast Leave | Max Groups | Proxy |
+| ---- | ------------- | ---------- | ---------- | ----- |
+| 10 | - | - | - | - |
+| 20 | - | - | - | - |
+
+| Vlan | Querier Enabled | IP Address | Query Interval | Max Response Time | Last Member Query Interval | Last Member Query Count | Startup Query Interval | Startup Query Count | Version |
+| ---- | --------------- | ---------- | -------------- | ----------------- | -------------------------- | ----------------------- | ---------------------- | ------------------- | ------- |
+| 10 | True | 192.168.101.2 | - | - | - | - | - | - | - |
+| 20 | True | 192.168.101.2 | - | - | - | - | - | - | - |
+
 #### IP IGMP Snooping Device Configuration
 
 ```eos
+!
+ip igmp snooping vlan 10 querier
+ip igmp snooping vlan 10 querier address 192.168.101.2
+ip igmp snooping vlan 20 querier
+ip igmp snooping vlan 20 querier address 192.168.101.2
 ```
+
+### Router Multicast
+
+#### IP Router Multicast Summary
+
+- Routing for IPv4 multicast is enabled.
+- Software forwarding by the Software Forwarding Engine (SFE)
+
+#### IP Router Multicast VRFs
+
+| VRF Name | Multicast Routing |
+| -------- | ----------------- |
+| VRF_A | enabled |
+
+#### Router Multicast Device Configuration
+
+```eos
+!
+router multicast
+   ipv4
+      routing
+      software-forwarding sfe
+   !
+   vrf VRF_A
+      ipv4
+         routing
+```
+
+### PIM Sparse Mode
+
+#### PIM Sparse Mode Enabled Interfaces
+
+| Interface Name | VRF Name | IP Version | Border Router | DR Priority | Local Interface | Neighbor Filter |
+| -------------- | -------- | ---------- | ------------- | ----------- | --------------- | --------------- |
+| Ethernet3 | - | IPv4 | - | - | - | - |
+| Ethernet4 | - | IPv4 | - | - | - | - |
+| Ethernet5 | - | IPv4 | - | - | - | - |
+| Ethernet6 | - | IPv4 | - | - | - | - |
+| Vlan10 | VRF_A | IPv4 | - | - | Loopback99 | - |
+| Vlan20 | VRF_A | IPv4 | - | - | Loopback99 | - |
+| Vlan4093 | - | IPv4 | - | - | - | - |
 
 ## Filters
 
@@ -877,4 +943,19 @@ route-map RM-MLAG-PEER-IN permit 10
 vrf instance MGMT
 !
 vrf instance VRF_A
+```
+
+## Virtual Source NAT
+
+### Virtual Source NAT Summary
+
+| Source NAT VRF | Source NAT IPv4 Address | Source NAT IPv6 Address |
+| -------------- | ----------------------- | ----------------------- |
+| VRF_A | 192.168.109.2 | - |
+
+### Virtual Source NAT Configuration
+
+```eos
+!
+ip address virtual source-nat vrf VRF_A address 192.168.109.2
 ```

@@ -238,6 +238,7 @@ vlan internal order ascending range 1006 1199
 | ------- | ---- | ------------ |
 | 10 | DMZ | - |
 | 20 | Internal | - |
+| 30 | Test | - |
 | 3009 | MLAG_L3_VRF_VRF_A | MLAG |
 | 4093 | MLAG_L3 | MLAG |
 | 4094 | MLAG | MLAG |
@@ -251,6 +252,9 @@ vlan 10
 !
 vlan 20
    name Internal
+!
+vlan 30
+   name Test
 !
 vlan 3009
    name MLAG_L3_VRF_VRF_A
@@ -434,6 +438,7 @@ interface Loopback1
 | --------- | ----------- | --- | ---- | -------- |
 | Vlan10 | DMZ | VRF_A | - | False |
 | Vlan20 | Internal | VRF_A | - | False |
+| Vlan30 | Test | VRF_A | - | False |
 | Vlan3009 | MLAG_L3_VRF_VRF_A | VRF_A | 1500 | False |
 | Vlan4093 | MLAG_L3 | default | 1500 | False |
 | Vlan4094 | MLAG | default | 1500 | False |
@@ -444,6 +449,7 @@ interface Loopback1
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
 | Vlan10 |  VRF_A  |  -  |  10.1.10.1/24  |  -  |  -  |  -  |
 | Vlan20 |  VRF_A  |  -  |  10.1.20.1/24  |  -  |  -  |  -  |
+| Vlan30 |  VRF_A  |  -  |  10.1.30.1/24  |  -  |  -  |  -  |
 | Vlan3009 |  VRF_A  |  10.255.251.1/31  |  -  |  -  |  -  |  -  |
 | Vlan4093 |  default  |  10.255.251.1/31  |  -  |  -  |  -  |  -  |
 | Vlan4094 |  default  |  10.255.252.1/31  |  -  |  -  |  -  |  -  |
@@ -463,6 +469,12 @@ interface Vlan20
    no shutdown
    vrf VRF_A
    ip address virtual 10.1.20.1/24
+!
+interface Vlan30
+   description Test
+   no shutdown
+   vrf VRF_A
+   ip address virtual 10.1.30.1/24
 !
 interface Vlan3009
    description MLAG_L3_VRF_VRF_A
@@ -501,6 +513,7 @@ interface Vlan4094
 | ---- | --- | ---------- | --------------- |
 | 10 | 10010 | - | - |
 | 20 | 10020 | - | - |
+| 30 | 10030 | - | - |
 
 ##### VRF to VNI and Multicast Group Mappings
 
@@ -519,6 +532,7 @@ interface Vxlan1
    vxlan udp-port 4789
    vxlan vlan 10 vni 10010
    vxlan vlan 20 vni 10020
+   vxlan vlan 30 vni 10030
    vxlan vrf VRF_A vni 10
 ```
 
@@ -650,6 +664,7 @@ ASN Notation: asplain
 | ---- | ------------------- | ----------------- | ------------------- | ------------------- | ------------ |
 | 10 | 192.168.101.2:10010 | 10010:10010 | - | - | learned |
 | 20 | 192.168.101.2:10020 | 10020:10020 | - | - | learned |
+| 30 | 192.168.101.2:10030 | 10030:10030 | - | - | learned |
 
 #### Router BGP VRFs
 
@@ -717,6 +732,11 @@ router bgp 65100
    vlan 20
       rd 192.168.101.2:10020
       route-target both 10020:10020
+      redistribute learned
+   !
+   vlan 30
+      rd 192.168.101.2:10030
+      route-target both 10030:10030
       redistribute learned
    !
    address-family evpn

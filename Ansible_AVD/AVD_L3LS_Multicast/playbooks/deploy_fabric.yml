@@ -1,0 +1,20 @@
+---
+- name: Deploy fabric to CVP
+  hosts: FABRIC
+  tasks:
+    - name: Provision CVP with AVD configuration
+      ansible.builtin.import_role:
+        name: arista.avd.cv_deploy
+      vars:
+        cv_server: 192.168.0.5
+        cv_username: "{{ hostvars['cvp1'].ansible_user }}"
+        cv_password: "{{ hostvars['cvp1'].ansible_password }}"
+        cv_verify_certs: false
+        cv_run_change_control: true
+        cv_configlet_name_template: "AVD-${hostname}"
+        cv_register_detailed_results: true
+    - name: Print cv_deploy_results
+      ansible.builtin.debug:
+        msg: "{{ cv_deploy_results }}"
+
+

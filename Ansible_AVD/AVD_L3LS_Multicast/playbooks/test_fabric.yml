@@ -1,0 +1,9 @@
+- name: Run Fabric states validation
+  hosts: FABRIC
+  vars:
+    avd_catalogs_filters:
+      - skip_tests: [VerifyLLDPNeighbors, VerifyLoggingErrors]
+  tasks:
+    - name: Run ANTA on EOS devices
+      ansible.builtin.import_role:
+        name: arista.avd.anta_runner

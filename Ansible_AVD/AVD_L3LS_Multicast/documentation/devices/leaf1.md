@@ -38,12 +38,17 @@
   - [Router BFD](#router-bfd)
 - [Multicast](#multicast)
   - [IP IGMP Snooping](#ip-igmp-snooping)
+  - [Router Multicast](#router-multicast)
+  - [PIM Sparse Mode](#pim-sparse-mode)
 - [Filters](#filters)
   - [Prefix-lists](#prefix-lists)
   - [Route-maps](#route-maps)
 - [VRF Instances](#vrf-instances)
   - [VRF Instances Summary](#vrf-instances-summary)
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
+- [Virtual Source NAT](#virtual-source-nat)
+  - [Virtual Source NAT Summary](#virtual-source-nat-summary)
+  - [Virtual Source NAT Configuration](#virtual-source-nat-configuration)
 
 ## Management
 
@@ -238,7 +243,6 @@ vlan internal order ascending range 1006 1199
 | ------- | ---- | ------------ |
 | 10 | DMZ | - |
 | 20 | Internal | - |
-| 30 | Test | - |
 | 3009 | MLAG_L3_VRF_VRF_A | MLAG |
 | 4093 | MLAG_L3 | MLAG |
 | 4094 | MLAG | MLAG |
@@ -252,9 +256,6 @@ vlan 10
 !
 vlan 20
    name Internal
-!
-vlan 30
-   name Test
 !
 vlan 3009
    name MLAG_L3_VRF_VRF_A
@@ -315,6 +316,7 @@ interface Ethernet3
    mtu 1500
    no switchport
    ip address 192.168.103.1/31
+   pim ipv4 sparse-mode
    sflow enable
 !
 interface Ethernet4
@@ -323,6 +325,7 @@ interface Ethernet4
    mtu 1500
    no switchport
    ip address 192.168.103.3/31
+   pim ipv4 sparse-mode
    sflow enable
 !
 interface Ethernet5
@@ -331,6 +334,7 @@ interface Ethernet5
    mtu 1500
    no switchport
    ip address 192.168.103.5/31
+   pim ipv4 sparse-mode
    sflow enable
 !
 interface Ethernet6
@@ -339,6 +343,7 @@ interface Ethernet6
    mtu 1500
    no switchport
    ip address 192.168.103.7/31
+   pim ipv4 sparse-mode
    sflow enable
 !
 interface Ethernet7
@@ -407,6 +412,7 @@ interface Port-Channel9
 | --------- | ----------- | --- | ---------- |
 | Loopback0 | ROUTER_ID | default | 192.168.101.1/32 |
 | Loopback1 | VXLAN_TUNNEL_SOURCE | default | 192.168.102.1/32 |
+| Loopback99 | DIAG_VRF_VRF_A | VRF_A | 192.168.109.1/32 |
 
 ##### IPv6
 
@@ -414,6 +420,7 @@ interface Port-Channel9
 | --------- | ----------- | --- | ------------ |
 | Loopback0 | ROUTER_ID | default | - |
 | Loopback1 | VXLAN_TUNNEL_SOURCE | default | - |
+| Loopback99 | DIAG_VRF_VRF_A | VRF_A | - |
 
 #### Loopback Interfaces Device Configuration
 
@@ -428,6 +435,12 @@ interface Loopback1
    description VXLAN_TUNNEL_SOURCE
    no shutdown
    ip address 192.168.102.1/32
+!
+interface Loopback99
+   description DIAG_VRF_VRF_A
+   no shutdown
+   vrf VRF_A
+   ip address 192.168.109.1/32
 ```
 
 ### VLAN Interfaces
@@ -438,7 +451,6 @@ interface Loopback1
 | --------- | ----------- | --- | ---- | -------- |
 | Vlan10 | DMZ | VRF_A | - | False |
 | Vlan20 | Internal | VRF_A | - | False |
-| Vlan30 | Test | VRF_A | - | False |
 | Vlan3009 | MLAG_L3_VRF_VRF_A | VRF_A | 1500 | False |
 | Vlan4093 | MLAG_L3 | default | 1500 | False |
 | Vlan4094 | MLAG | default | 1500 | False |
@@ -449,7 +461,6 @@ interface Loopback1
 | --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
 | Vlan10 |  VRF_A  |  -  |  10.1.10.1/24  |  -  |  -  |  -  |
 | Vlan20 |  VRF_A  |  -  |  10.1.20.1/24  |  -  |  -  |  -  |
-| Vlan30 |  VRF_A  |  -  |  10.1.30.1/24  |  -  |  -  |  -  |
 | Vlan3009 |  VRF_A  |  10.255.251.0/31  |  -  |  -  |  -  |  -  |
 | Vlan4093 |  default  |  10.255.251.0/31  |  -  |  -  |  -  |  -  |
 | Vlan4094 |  default  |  10.255.252.0/31  |  -  |  -  |  -  |  -  |
@@ -462,19 +473,17 @@ interface Vlan10
    description DMZ
    no shutdown
    vrf VRF_A
+   pim ipv4 sparse-mode
+   pim ipv4 local-interface Loopback99
    ip address virtual 10.1.10.1/24
 !
 interface Vlan20
    description Internal
    no shutdown
    vrf VRF_A
+   pim ipv4 sparse-mode
+   pim ipv4 local-interface Loopback99
    ip address virtual 10.1.20.1/24
-!
-interface Vlan30
-   description Test
-   no shutdown
-   vrf VRF_A
-   ip address virtual 10.1.30.1/24
 !
 interface Vlan3009
    description MLAG_L3_VRF_VRF_A
@@ -488,6 +497,7 @@ interface Vlan4093
    no shutdown
    mtu 1500
    ip address 10.255.251.0/31
+   pim ipv4 sparse-mode
 !
 interface Vlan4094
    description MLAG
@@ -503,7 +513,8 @@ interface Vlan4094
 
 | Setting | Value |
 | ------- | ----- |
-| Source Interface | Loopback1 |
+| Source Interface | Loopback0 |
+| MLAG Source Interface | Loopback1 |
 | UDP port | 4789 |
 | EVPN MLAG Shared Router MAC | mlag-system-id |
 
@@ -511,15 +522,14 @@ interface Vlan4094
 
 | VLAN | VNI | Flood List | Multicast Group |
 | ---- | --- | ---------- | --------------- |
-| 10 | 10010 | - | - |
-| 20 | 10020 | - | - |
-| 30 | 10030 | - | - |
+| 10 | 10010 | - | 239.99.99.9 |
+| 20 | 10020 | - | 239.99.99.19 |
 
 ##### VRF to VNI and Multicast Group Mappings
 
 | VRF | VNI | Overlay Multicast Group to Encap Mappings |
 | --- | --- | ----------------------------------------- |
-| VRF_A | 10 | - |
+| VRF_A | 10 | default -> 239.0.100.1 |
 
 #### VXLAN Interface Device Configuration
 
@@ -527,13 +537,16 @@ interface Vlan4094
 !
 interface Vxlan1
    description leaf1_VTEP
-   vxlan source-interface Loopback1
+   vxlan source-interface Loopback0
    vxlan virtual-router encapsulation mac-address mlag-system-id
    vxlan udp-port 4789
    vxlan vlan 10 vni 10010
    vxlan vlan 20 vni 10020
-   vxlan vlan 30 vni 10030
    vxlan vrf VRF_A vni 10
+   vxlan mlag source-interface Loopback1
+   vxlan vlan 10 multicast group 239.99.99.9
+   vxlan vlan 20 multicast group 239.99.99.19
+   vxlan vrf VRF_A multicast group 239.0.100.1
 ```
 
 ## Routing
@@ -664,13 +677,12 @@ ASN Notation: asplain
 | ---- | ------------------- | ----------------- | ------------------- | ------------------- | ------------ |
 | 10 | 192.168.101.1:10010 | 10010:10010 | - | - | learned |
 | 20 | 192.168.101.1:10020 | 10020:10020 | - | - | learned |
-| 30 | 192.168.101.1:10030 | 10030:10030 | - | - | learned |
 
 #### Router BGP VRFs
 
-| VRF | Route-Distinguisher | Redistribute | Graceful Restart |
-| --- | ------------------- | ------------ | ---------------- |
-| VRF_A | 192.168.101.1:10 | connected | - |
+| VRF | Route-Distinguisher | Redistribute | Graceful Restart | EVPN Multicast |
+| --- | ------------------- | ------------ | ---------------- | -------------- |
+| VRF_A | 192.168.101.1:10 | connected | - | IPv4: True<br>Transit: False |
 
 #### Router BGP Device Configuration
 
@@ -734,11 +746,6 @@ router bgp 65100
       route-target both 10020:10020
       redistribute learned
    !
-   vlan 30
-      rd 192.168.101.1:10030
-      route-target both 10030:10030
-      redistribute learned
-   !
    address-family evpn
       neighbor EVPN-OVERLAY-PEERS activate
    !
@@ -755,6 +762,7 @@ router bgp 65100
       neighbor 10.255.251.1 peer group MLAG-IPv4-UNDERLAY-PEER
       neighbor 10.255.251.1 description leaf2_Vlan3009
       redistribute connected route-map RM-CONN-2-BGP-VRFS
+      evpn multicast
 ```
 
 ## BFD
@@ -785,10 +793,68 @@ router bfd
 | ------------- | ---------- | ----------------------- | ----- | ---------------------- | ------------------- |
 | Enabled | - | - | - | - | - |
 
+##### IP IGMP Snooping Vlan Summary
+
+| Vlan | IGMP Snooping | Fast Leave | Max Groups | Proxy |
+| ---- | ------------- | ---------- | ---------- | ----- |
+| 10 | - | - | - | - |
+| 20 | - | - | - | - |
+
+| Vlan | Querier Enabled | IP Address | Query Interval | Max Response Time | Last Member Query Interval | Last Member Query Count | Startup Query Interval | Startup Query Count | Version |
+| ---- | --------------- | ---------- | -------------- | ----------------- | -------------------------- | ----------------------- | ---------------------- | ------------------- | ------- |
+| 10 | True | 192.168.101.1 | - | - | - | - | - | - | - |
+| 20 | True | 192.168.101.1 | - | - | - | - | - | - | - |
+
 #### IP IGMP Snooping Device Configuration
 
 ```eos
+!
+ip igmp snooping vlan 10 querier
+ip igmp snooping vlan 10 querier address 192.168.101.1
+ip igmp snooping vlan 20 querier
+ip igmp snooping vlan 20 querier address 192.168.101.1
 ```
+
+### Router Multicast
+
+#### IP Router Multicast Summary
+
+- Routing for IPv4 multicast is enabled.
+- Software forwarding by the Software Forwarding Engine (SFE)
+
+#### IP Router Multicast VRFs
+
+| VRF Name | Multicast Routing |
+| -------- | ----------------- |
+| VRF_A | enabled |
+
+#### Router Multicast Device Configuration
+
+```eos
+!
+router multicast
+   ipv4
+      routing
+      software-forwarding sfe
+   !
+   vrf VRF_A
+      ipv4
+         routing
+```
+
+### PIM Sparse Mode
+
+#### PIM Sparse Mode Enabled Interfaces
+
+| Interface Name | VRF Name | IP Version | Border Router | DR Priority | Local Interface | Neighbor Filter |
+| -------------- | -------- | ---------- | ------------- | ----------- | --------------- | --------------- |
+| Ethernet3 | - | IPv4 | - | - | - | - |
+| Ethernet4 | - | IPv4 | - | - | - | - |
+| Ethernet5 | - | IPv4 | - | - | - | - |
+| Ethernet6 | - | IPv4 | - | - | - | - |
+| Vlan10 | VRF_A | IPv4 | - | - | Loopback99 | - |
+| Vlan20 | VRF_A | IPv4 | - | - | Loopback99 | - |
+| Vlan4093 | - | IPv4 | - | - | - | - |
 
 ## Filters
 
@@ -877,4 +943,19 @@ route-map RM-MLAG-PEER-IN permit 10
 vrf instance MGMT
 !
 vrf instance VRF_A
+```
+
+## Virtual Source NAT
+
+### Virtual Source NAT Summary
+
+| Source NAT VRF | Source NAT IPv4 Address | Source NAT IPv6 Address |
+| -------------- | ----------------------- | ----------------------- |
+| VRF_A | 192.168.109.1 | - |
+
+### Virtual Source NAT Configuration
+
+```eos
+!
+ip address virtual source-nat vrf VRF_A address 192.168.109.1
 ```
