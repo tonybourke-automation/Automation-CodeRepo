@@ -1,0 +1,9 @@
+---
+- name: Upload configlets
+  hosts: cvp
+  vars_files:
+    - ../vars/CVP_model.yml
+  tasks:
+    - name: Upload configlet
+      arista.cvp.cv_configlet_v3:
+        configlets: "{{ configlet_list }}"

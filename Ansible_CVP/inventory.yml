@@ -3,13 +3,12 @@ all:
   children:
     CVP_cluster:
       vars:
-          ansible_user: arista
-          ansible_password: PASSWORD-GOES-HERE
+          ansible_user: cvaas
+          ansible_password: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjc1NTYxOTMwNjk3Mzc5Njc4NTIsImRzbiI6IkF1dG9tYXRpb24iLCJkc3QiOiJhY2NvdW50IiwiZXhwIjoxNzcwMzY0ODAwLCJpYXQiOjE3Njc3MjQxMzYsIm9naSI6Mywib2duIjoiRGVmYXVsdCIsInNpZCI6IjJlMTE0OTAxMGUwZTVhNmJlN2Q4MjY4YWEwZDJlYWJkNDkxMjBhYjdkNWE5OTg0MDg3OTNmN2E3OThhODk5YjMtWGtVaEFXODVwb3Y1NkI2d0ljT0dZTlV2ZTROSENjYXNNRERIbHozVCJ9.g4Mx9ikz_nF7SLm2b9vQefrCIAsczRXKVna2HjaRENKOcqwkXcKEt9033rT0vDb3L7moyxlQQtnxfvLJG0X8M2xVdS--vxMHH8itvI84cL_5Of9U-neby-IZ-4qJHJA-HWZlQkMXxIC1kOOP07RBeUkrflpIFTA4AHWum0FNuSlckUKPu6E8VHRAgkUKkUxtJkFaAkwJJl7gMUrivMowyWpPUuVWcmbHJwcuVSo6M5ol_TbxR2eqRYCoOXZdzflBt9uWMlBy-uFlY6mmw53Qr_a7MH_RyCU4Esyz4X2oGZ_GKX-uQDBce2R5aakb0OuoE0rd8HEfxTctUrtEfQynr5Ot57Er5hqfmZwLzEAsKRgvDi2QplqO1e0kg_WLV5t4Nb11-NBUlgjyzL7iHtEZo36tJki2JKMaUNPDmnhIP-1W0N6qzQj_cUT1yGfRaIcuwFQ2ktb2gPUYfuJ7MA_ZHQbvUorhzzwnhf3TQ7kb1JlMlSBihbhvNUgPjWjhpEXSR8J7mO2uSRnqbbRLc2lOel4fhWo78xW473pV_JrMT9WUmsQK0EPd1x_jYVURj6cb0Uhv7ZhBU7OxTz9-87jum9KHempGR_wHIeoqxvMQ2TSqy44nEQVmS3n8cgL_pugH93vQVpVb4jaXUjNdca32w9wc5NfIqxKme1QnevFtxSM"
           ansible_connection: httpapi
           ansible_httpapi_use_ssl: True
           ansible_httpapi_validate_certs: False
           ansible_network_os: eos
           ansible_httpapi_port: 443
       hosts: 
-        cvp1:
-          ansible_host: 192.168.0.5
+        cvp:

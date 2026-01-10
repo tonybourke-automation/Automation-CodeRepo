@@ -1,0 +1,16 @@
+---
+- name: Set devices
+  hosts: cvp
+  vars_files:
+    - ../vars/CVP_model.yml
+  tasks:
+    - name: Set devices
+      arista.cvp.cv_device_v3:
+        devices: "{{ CVP_DEVICES }}"
+      register: CV_RUN
+    - name: Show registered variables
+      ansible.builtin.debug:
+        msg: "{{ CV_RUN }}"
+    - name: Make changes
+      arista.cvp.cv_task_v3:
+        tasks: "{{ CV_RUN.taskIds }}"

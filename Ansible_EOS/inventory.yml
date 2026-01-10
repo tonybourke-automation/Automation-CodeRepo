@@ -2,11 +2,14 @@ all:
   vars:
     ansible_user: arista
     ansible_network_os: eos
-    ansible_password: PASSWORD-GOES-HERE
+    # ansible_password: PASSWORD-GOES-HERE
     ansible_connection: httpapi
     ansible_httpapi_use_ssl: True
-    ansible_httpapi_validate_certs: False
+    ansible_httpapi_validate_certs: True
+    ansible_httpapi_client_cert: "/home/coder/project/labfiles/Automation-CodeRepo/Ansible_EOS/arista_user.crt"
+    ansible_httpapi_client_key: "/home/coder/project/labfiles/Automation-CodeRepo/Ansible_EOS/arista_user.key"
     ansible_httpapi_port: 443
+
 # This section will have Ansible connect via the SSH CLI
 #     ansible_connection: network_cli
 #     ansible_user: arista
